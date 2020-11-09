@@ -78,6 +78,7 @@ main h2 {
 .table-list {
     border-collapse: collapse;
     width: 100%;
+    margin-bottom: 1rem;
 }
 .table-list,
 .table-list th,
@@ -111,7 +112,11 @@ main h2 {
 .list-actions-button-details,
 .list-actions-button-edit,
 .list-actions-button-delete,
-.button-add {
+.button-add,
+.form-button-submit,
+.form-button-cancel,
+.button-edit,
+.button-back {
     border: none;
     border-radius: 9px;
     color: white;
@@ -119,37 +124,105 @@ main h2 {
     text-align: center;
     font-size: 0.8rem;
 }
+
 .list-actions-button-details,
 .list-actions-button-edit {
     margin-right: 1rem;
 }
-.list-actions-button-details {
+.list-actions-button-details,
+.button-back {
     background-color: #2d8fcc;    
 }
-.list-actions-button-details:hover {
+.list-actions-button-details:hover,
+.button-back:hover {
     background-color: #256c99;
 }
-.list-actions-button-edit {
+.list-actions-button-edit,
+.button-edit {
     background-color: #db8c32;
 }
 
-.list-actions-button-edit:hover {
+.list-actions-button-edit:hover,
+.button-edit:hover {
     background-color: #c78b46
 }
-.list-actions-button-delete {
+.list-actions-button-delete,
+.form-button-cancel {
     background-color: #b6200f;
 }
 
-.list-actions-button-delete:hover {
+.list-actions-button-delete:hover,
+.form-button-cancel:hover {
     background-color: #921e11;
 }
-.button-add {
+.button-add,
+.form-button-submit,
+.form-button-cancel,
+.button-edit,
+.button-back  {
     padding: 0.5rem 1rem;
 }
-.button-add {
-    background-color: #356363;
+.button-add,
+.form-button-submit {
+    background-color: #366839;
 }
 
-.button-add:hover {
+.button-add:hover,
+.form-button-submit:hover {
     background-color: #234141;
+}
+button, 
+input, 
+select, 
+textarea { 
+    font-family: inherit; 
+    font-size: 100%; 
+    box-sizing: border-box; 
+    padding: 0; margin: 0; 
+} 
+
+textarea { 
+    overflow: auto; 
+}
+.form {
+    margin-left: 2rem;
+    width: 300px;
+}
+.form select, 
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="datetime-local"],
+.form input[type="email"] {
+    border: 1px solid #7f8c8d;
+    color:#2c3e50;
+    border-radius: 9px;
+    padding: 0.5rem;
+    width: 100%;
+}
+.form label {
+    display: block;
+    margin-bottom: 0.2em;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+abbr[title='required'] {
+    color: #ff1908;
+}
+.form-buttons{
+    margin-top: 2rem;
+}
+.form-button-submit,
+.form-button-cancel,
+.button-edit,
+.button-back {
+    width: 100%;
+}
+.form-button-cancel {
+    box-sizing: border-box;
+    display: block;
+}
+
+.form-button-submit {
+    margin-bottom: 0.5rem;
 }

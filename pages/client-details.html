@@ -23,24 +23,23 @@
     </nav>
     <main>
         <h2>Client details</h2>
-        <form>
-            <div>
+        <form class="form">
+            <div class="form-group">
                 <label for="firstName">First Name:</label>
                 <input type="text" name="firstName" value="Paweł" id="firstName" disabled />
             </div>
-            <div>
+            <div class="form-group">
                 <label for="lastName">Last Name:</label>
                 <input type="text" name="lastName" value="Nowak" id="firstName" disabled />
             </div>
-            <div>
+            <div class="form-group">
                 <label for="email">E-mail:</label>
                 <input type="email" name="firstName" value="pnowa12@acme.com" id="firstName" disabled />
             </div>
-            <div>
-
-                <a href="client-form.html">Edit</a>
-            </div>
         </form>
+        <div>
+            <a href="client-form.html" class="button-edit">Edit</a>
+        </div>
         <h2>Rental details</h2>
         <table class="table-list">
             <thead>
@@ -67,7 +66,7 @@
                     <td>2020-06-21 14:00:00</td>
                 </tr>
         </table>
-        <a href="client-list.html">Back</a>
+        <a href="client-list.html" class="button-back">Back</a>
 
     </main>
     <footer>
