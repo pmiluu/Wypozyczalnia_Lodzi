@@ -14,59 +14,62 @@
     </header>
     <nav>
         <ul>
-            <li><a href="">Main Page</a></li>
-            <li><a href="">Clients</a></li>
-            <li><a href="">Boats</a></li>
-            <li><a href="">Rental</a></li>
+            <li><a href="../index.html">Main Page</a></li>
+            <li><a href="client-list.html">Clients</a></li>
+            <li><a href="boat-list.html">Boats</a></li>
+            <li><a href="rental-list.html">Rental</a></li>
         </ul>
     </nav>
     <main>
-        <h2>Client details</h2>
+        <h2>Boat details</h2>
         <form>
             <div>
-                <label for="firstName">First Name:</label>
-                <input type="text" name="firstName" value="Paweł" id="firstName" disabled />
+                <label for="boatName">Name:</label>
+                <input type="text" name="boatName" value="Zodiac" id="boatName" disabled />
             </div>
             <div>
-                <label for="lastName">Last Name:</label>
-                <input type="text" name="lastName" value="Nowak" id="firstName" disabled />
+                <label for="seats">Seats:</label>
+                <input type="number" name="seats" value="4" id="seats" disabled />
             </div>
             <div>
-                <label for="email">E-mail:</label>
-                <input type="email" name="firstName" value="pnowa12@acme.com" id="firstName" disabled />
+                <label for="year">Year:</label>
+                <input type="number" name="year" value="2005" id="year" disabled />
             </div>
             <div>
-
-                <a href="client-form.html">Edit</a>
+                <label for="price">Price:</label>
+                <input type="number" name="price" value="40" id="price" disabled />
             </div>
         </form>
+        <div>
+            <a href="boat-form.html">Edit</a>
+        </div>
         <h2>Rental details</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Boat</th>
+                    <th>E-mail</th>
                     <th>Date From</th>
                     <th>Date To</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Zodiac</td>
+                    <td>pnowa12@acme.com</td>
                     <td>2020-05-19 10:00:00</td>
                     <td>2020-05-19 12:00:00</td>
                 </tr>
                 <tr>
-                    <td>Bavaria</td>
+                    <td>pnowa12@acme.com</td>
                     <td>2020-06-20 18:00:00</td>
                     <td>2020-06-20 20:00:00</td>
                 </tr>
                 <tr>
-                    <td>Janmor</td>
+                    <td>pnowa12@acme.com</td>
                     <td>2020-06-21 11:00:00</td>
                     <td>2020-06-21 14:00:00</td>
                 </tr>
         </table>
-        <a href="client-list.html">Back</a>
+        <a href="boat-list.html">Back</a>
 
     </main>
     <footer>

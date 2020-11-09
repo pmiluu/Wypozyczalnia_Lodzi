@@ -14,10 +14,10 @@
     </header>
     <nav>
         <ul>
-            <li><a href="">Main Page</a></li>
-            <li><a href="">Clients</a></li>
-            <li><a href="">Boats</a></li>
-            <li><a href="">Rental</a></li>
+            <li><a href="../index.html">Main Page</a></li>
+            <li><a href="client-list.html">Clients</a></li>
+            <li><a href="boat-list.html">Boats</a></li>
+            <li><a href="rental-list.html">Rental</a></li>
         </ul>
     </nav>
     <main>
@@ -28,16 +28,20 @@
                 <input type="text" name="boatName" id="boatName" />
             </div>
             <div>
-                <label for="Seats">Seats<sup>*</sup></label>
-                <input type="number" name="Seats" id="Seats" />
+                <label for="seats">Seats<sup>*</sup></label>
+                <input type="number" name="seats" id="seats" min="1" />
             </div>
             <div>
-                <label for="email">E-mail:<sup>*</sup></label>
-                <input type="text" name="email" id="email" />
+                <label for="year">Year<sup>*</sup></label>
+                <input type="number" name="year" id="year" min="1900" />
+            </div>
+            <div>
+                <label for="price">Price<sup>*</sup></label>
+                <input type="number" step="0.01" name="price" min="0" id="price" />
             </div>
             <div>
                 <input type="submit" value="Add" />
-                <a href="">Cancel</a>
+                <a href="boat-list.html">Cancel</a>
             </div>
 
         </form>
