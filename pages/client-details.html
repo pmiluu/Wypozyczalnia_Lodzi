@@ -24,48 +24,48 @@
     <main>
         <h2>Client details</h2>
         <form class="form">
-            <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" name="firstName" value="Paweł" id="firstName" disabled />
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" name="lastName" value="Nowak" id="firstName" disabled />
-            </div>
-            <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="email" name="firstName" value="pnowa12@acme.com" id="firstName" disabled />
-            </div>
+
+            <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" value="Paweł" id="firstName" disabled />
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lastName" value="Nowak" id="firstName" disabled />
+
+            <label for="email">E-mail:</label>
+            <input type="email" name="firstName" value="pnowa12@acme.com" id="firstName" disabled />
+
         </form>
         <div>
             <a href="client-form.html" class="button-edit">Edit</a>
         </div>
         <h2>Rental details</h2>
-        <table class="table-list">
-            <thead>
-                <tr>
-                    <th>Boat</th>
-                    <th>Date From</th>
-                    <th>Date To</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Zodiac</td>
-                    <td>2020-05-19 10:00:00</td>
-                    <td>2020-05-19 12:00:00</td>
-                </tr>
-                <tr>
-                    <td>Bavaria</td>
-                    <td>2020-06-20 18:00:00</td>
-                    <td>2020-06-20 20:00:00</td>
-                </tr>
-                <tr>
-                    <td>Janmor</td>
-                    <td>2020-06-21 11:00:00</td>
-                    <td>2020-06-21 14:00:00</td>
-                </tr>
-        </table>
+        <div class="table-wrapper">
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Boat</th>
+                        <th>Date From</th>
+                        <th>Date To</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Zodiac</td>
+                        <td>2020-05-19 10:00:00</td>
+                        <td>2020-05-19 12:00:00</td>
+                    </tr>
+                    <tr>
+                        <td>Bavaria</td>
+                        <td>2020-06-20 18:00:00</td>
+                        <td>2020-06-20 20:00:00</td>
+                    </tr>
+                    <tr>
+                        <td>Janmor</td>
+                        <td>2020-06-21 11:00:00</td>
+                        <td>2020-06-21 14:00:00</td>
+                    </tr>
+            </table>
+        </div>
         <a href="client-list.html" class="button-back">Back</a>
 
     </main>

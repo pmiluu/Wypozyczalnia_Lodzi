@@ -24,22 +24,19 @@
     <main>
         <h2>Add new boat</h2>
         <form class="form">
-            <div class="form-group">
-                <label for="boatName">Name: <abbr title="required" aria-label="required">*</abbr></label>
-                <input type="text" name="boatName" id="boatName" />
-            </div>
-            <div class="form-group">
-                <label for="seats">Seats <abbr title="required" aria-label="required">*</abbr></label>
-                <input type="number" name="seats" id="seats" min="1" />
-            </div>
-            <div class="form-group">
-                <label for="year">Year <abbr title="required" aria-label="required">*</abbr></label>
-                <input type="number" name="year" id="year" min="1900" />
-            </div>
-            <div class="form-group">
-                <label for="price">Price <abbr title="required" aria-label="required">*</abbr></label>
-                <input type="number" step="0.01" name="price" min="0" id="price" />
-            </div>
+
+            <label for="boatName">Name: <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="boatName" id="boatName" />
+
+            <label for="seats">Seats <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="number" name="seats" id="seats" min="1" />
+
+            <label for="year">Year <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="number" name="year" id="year" min="1900" />
+
+            <label for="price">Price <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="number" step="0.01" name="price" min="0" id="price" />
+
             <div class="form-buttons">
                 <input type="submit" value="Add" class="form-button-submit" />
                 <a href="boat-list.html" class="form-button-cancel">Cancel</a>

@@ -24,33 +24,30 @@
     <main>
         <h2>Add new rental</h2>
         <form class="form">
-            <div class="form-group">
-                <label for="email">E-mail: <abbr title="required" aria-label="required">*</abbr></label>
-                <input type="text" name="email" id="email" list="emailList">
-                <datalist id="emailList">
-                    <option>jan.kowalski@acme.com</option>
-                    <option>pnowa12@acme.com</option>
-                    <option>kwiatu@acme.com</option>
-                    <option>kowalZ11@acme.com</option>
-                </datalist>
-            </div>
-            <div class="form-group">
-                <label for="boat">Boat name: <abbr title="required" aria-label="required">*</abbr></label>
-                <input type="text" name="boat" id="boat" list="boatList">
-                <datalist id="boatList">
-                    <option>Zodiac</option>
-                    <option>Bavaria</option>
-                    <option>Janmor</option>
-                </datalist>
-            </div>
-            <div class="form-group">
-                <label for="dateFrom">Date from <abbr title="required" aria-label="required">*</abbr></label>
-                <input type="datetime-local" name="dateFrom" id="dateFrom">
-            </div>
-            <div class="form-group">
-                <label for="dateTo">Date to</label>
-                <input type="datetime-local" name="dateTo" id="dateTo">
-            </div>
+
+            <label for="email">E-mail: <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="email" id="email" list="emailList">
+            <datalist id="emailList">
+                <option>jan.kowalski@acme.com</option>
+                <option>pnowa12@acme.com</option>
+                <option>kwiatu@acme.com</option>
+                <option>kowalZ11@acme.com</option>
+            </datalist>
+
+            <label for="boat">Boat name: <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="boat" id="boat" list="boatList">
+            <datalist id="boatList">
+                <option>Zodiac</option>
+                <option>Bavaria</option>
+                <option>Janmor</option>
+            </datalist>
+
+            <label for="dateFrom">Date from <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="datetime-local" name="dateFrom" id="dateFrom">
+
+            <label for="dateTo">Date to</label>
+            <input type="datetime-local" name="dateTo" id="dateTo">
+
             <div class="form-buttons">
                 <input type="submit" value="Add" class="form-button-submit" />
                 <a href="rental-list.html" class="form-button-cancel">Cancel</a>
