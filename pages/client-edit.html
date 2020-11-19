@@ -22,33 +22,23 @@
         </ul>
     </nav>
     <main>
-        <h2>Add new rental</h2>
+        <h2>Add new client</h2>
         <form class="form">
+
+            <label for="firstName">First Name: <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="firstName" id="firstName" value="Paweł" />
+
+            <label for="lastName">Last Name: <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="lastName" id="lastName" value="Nowak" />
+
             <label for="email">E-mail: <abbr title="required" aria-label="required">*</abbr></label>
-            <select id="email" name="email">
-                <option>jan.kowalski@acme.com</option>
-                <option>pnowa12@acme.com</option>
-                <option>kwiatu@acme.com</option>
-                <option>kowalZ11@acme.com</option>
-            </select>
-
-            <label for="boat">Boat name: <abbr title="required" aria-label="required">*</abbr></label>
-            <select id="boat" name="boat">
-                <option>Zodiac</option>
-                <option>Bavaria</option>
-                <option>Janmor</option>
-            </select>
-
-            <label for="dateFrom">Date from <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="datetime-local" name="dateFrom" id="dateFrom">
-
-            <label for="dateTo">Date to</label>
-            <input type="datetime-local" name="dateTo" id="dateTo">
+            <input type="email" name="email" id="email" value="pnowa12@acme.com" />
 
             <div class="form-buttons">
                 <input type="submit" value="Add" class="form-button-submit" />
-                <a href="rental-list.html" class="form-button-cancel">Cancel</a>
+                <a href="client-list.html" class="form-button-cancel">Cancel</a>
             </div>
+
         </form>
     </main>
     <footer>
