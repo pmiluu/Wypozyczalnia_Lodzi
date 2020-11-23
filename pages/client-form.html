@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boat Rental</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <script type="application/javascript" src="../js/validationCommon.js"></script>
+    <script type="application/javascript" src="../js/validationClientForm.js"></script>
+
 </head>
 
 <body>
@@ -23,18 +26,22 @@
     </nav>
     <main>
         <h2>Add new client</h2>
-        <form class="form">
+        <form class="form" novalidate onsubmit="return validateForm();">
 
             <label for="firstName">First Name: <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="firstName" id="firstName" />
+            <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" />
+            <span id="errorFirstName" class="errors-text"></span>
 
             <label for="lastName">Last Name: <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="lastName" id="lastName" />
+            <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" />
+            <span id="errorLastName" class="errors-text"></span>
 
             <label for="email">E-mail: <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="email" name="email" id="email" />
+            <input type="email" name="email" id="email" placeholder="np. nazwa@domena.pl" />
+            <span id="errorEmail" class="errors-text"></span>
 
             <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
                 <input type="submit" value="Add" class="form-button-submit" />
                 <a href="client-list.html" class="form-button-cancel">Cancel</a>
             </div>
