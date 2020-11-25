@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boat Rental</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <script type="application/javascript" src="../js/validationCommon.js"></script>
+    <script type="application/javascript" src="../js/validationBoatForm.js"></script>
+
 
 </head>
 
@@ -24,21 +27,26 @@
     </nav>
     <main>
         <h2>Add new boat</h2>
-        <form class="form">
+        <form class="form" novalidate onsubmit="return validateForm();">
 
             <label for="boatName">Name: <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="boatName" id="boatName" />
+            <input type="text" name="boatName" id="boatName" placeholder="e.g. Zodiac" />
+            <span id="errorBoatName" class="errors-text"></span>
 
             <label for="seats">Seats <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="number" name="seats" id="seats" min="1" />
+            <input type="number" name="seats" id="seats" min="1" placeholder="e.g. 5" />
+            <span id="errorSeats" class="errors-text"></span>
 
             <label for="year">Year <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="number" name="year" id="year" min="1900" />
+            <input type="number" name="year" id="year" min="1900" placeholder="e.g. 2001" />
+            <span id="errorYear" class="errors-text"></span>
 
             <label for="price">Price <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="number" step="0.01" name="price" min="0" id="price" />
+            <input type="number" step="0.01" name="price" min="0" id="price" placeholder="e.g. 100" />
+            <span id="errorPrice" class="errors-text"></span>
 
             <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
                 <input type="submit" value="Add" class="form-button-submit" />
                 <a href="boat-list.html" class="form-button-cancel">Cancel</a>
             </div>

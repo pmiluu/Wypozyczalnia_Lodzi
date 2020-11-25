@@ -15,39 +15,39 @@ function validateForm() {
     if (!checkRequired(firstNameInput.value)) {
         valid = false;
         firstNameInput.classList.add("error-input");
-        errorFirstName.innerText = "Pole jest wymagane";
+        errorFirstName.innerText = "This field is required";
     } else if (!checkTextLengthRange(firstNameInput.value, 2, 60)) {
         valid = false;
         firstNameInput.classList.add("error-input");
-        errorFirstName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+        errorFirstName.innerText = "This field must contain 2-60 characters";
     }
 
     if (!checkRequired(lastNameInput.value)) {
         valid = false;
         lastNameInput.classList.add("error-input");
-        errorLastName.innerText = "Pole jest wymagane";
+        errorLastName.innerText = "This field is required";
     } else if (!checkTextLengthRange(lastNameInput.value, 2, 60)) {
         valid = false;
         lastNameInput.classList.add("error-input");
-        errorLastName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+        errorLastName.innerText = "This field must contain 2-60 characters";
     }
 
     if (!checkRequired(emailInput.value)) {
         valid = false;
         emailInput.classList.add("error-input");
-        errorEmail.innerText = "Pole jest wymagane";
+        errorEmail.innerText = "This field is required";
     } else if (!checkTextLengthRange(emailInput.value, 5, 60)) {
         valid = false;
         emailInput.classList.add("error-input");
-        errorEmail.innerText = "Pole powinno zawierać od 5 do 60 znaków";
+        errorEmail.innerText = "This field must contain 5-60 characters";
     } else if (!checkEmail(emailInput.value)) {
         valid = false;
         emailInput.classList.add("error-input");
-        errorEmail.innerText = "Pole powinno zawierać prawidłowy adres email";
+        errorEmail.innerText = "Invalid e-mail address";
     }
 
     if (!valid) {
-        errorsSummary.innerText = "Formularz zawiera błędy";
+        errorsSummary.innerText = "There are errors on the form";
     }
 
     return valid;

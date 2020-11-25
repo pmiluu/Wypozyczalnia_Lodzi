@@ -35,6 +35,17 @@ function checkTextLengthRange(value, min, max) {
     return true;
 }
 
+function checkNumberRange(value, min, max) {
+
+    if (value > max) {
+        return false;
+    }
+    if (value < min) {
+        return false;
+    }
+    return true;
+}
+
 function checkEmail(value) {
     if (!value) {
         return false;
