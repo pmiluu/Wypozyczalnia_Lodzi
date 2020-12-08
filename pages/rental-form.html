@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boat Rental</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <script type="application/javascript" src="../js/validationCommon.js"></script>
+    <script type="application/javascript" src="../js/validationRentalForm.js"></script>
 </head>
 
 <body>
@@ -23,7 +25,7 @@
     </nav>
     <main>
         <h2>Add new rental</h2>
-        <form class="form">
+        <form class="form" novalidate onsubmit="return validateForm();">
             <label for="email">E-mail: <abbr title="required" aria-label="required">*</abbr></label>
             <select id="email" name="email">
                 <option>jan.kowalski@acme.com</option>
@@ -31,6 +33,7 @@
                 <option>kwiatu@acme.com</option>
                 <option>kowalZ11@acme.com</option>
             </select>
+            <span id="errorEmail" class="errors-text"></span>
 
             <label for="boat">Boat name: <abbr title="required" aria-label="required">*</abbr></label>
             <select id="boat" name="boat">
@@ -38,14 +41,18 @@
                 <option>Bavaria</option>
                 <option>Janmor</option>
             </select>
+            <span id="errorBoat" class="errors-text"></span>
 
             <label for="dateFrom">Date from <abbr title="required" aria-label="required">*</abbr></label>
             <input type="datetime-local" name="dateFrom" id="dateFrom">
+            <span id="errorDateFrom" class="errors-text"></span>
 
             <label for="dateTo">Date to</label>
             <input type="datetime-local" name="dateTo" id="dateTo">
+            <span id="errorDateTo" class="errors-text"></span>
 
             <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
                 <input type="submit" value="Add" class="form-button-submit" />
                 <a href="rental-list.html" class="form-button-cancel">Cancel</a>
             </div>
