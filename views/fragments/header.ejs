@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boat Rental</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="application/javascript" src="../js/validationCommon.js"></script>
+    <script type="application/javascript" src="../js/validationClientForm.js"></script>
+    <script type="application/javascript" src="../js/validationBoatForm.js"></script>
+    <script type="application/javascript" src="../js/validationRentalForm.js"></script>
 </head>
 
 <body>
@@ -15,9 +19,9 @@
     </header>
     <nav>
         <ul>
-            <li><a href="index.html" class="active">Main Page</a></li>
-            <li><a href="pages/client-list.html">Clients</a></li>
-            <li><a href="pages/boat-list.html">Boats</a></li>
-            <li><a href="pages/rental-list.html">Rental</a></li>
+            <li><a href="index.html" class="<%= navLocation == 'main' ? 'active' : ''%>">Main Page</a></li>
+            <li><a href="pages/client-list.html" class="<%= navLocation == 'client' ? 'active' : ''%>">Clients</a></li>
+            <li><a href="pages/boat-list.html" class="<%= navLocation == 'boat' ? 'active' : ''%>">Boats</a></li>
+            <li><a href="pages/rental-list.html" class="<%= navLocation == 'rental' ? 'active' : ''%>">Rental</a></li>
         </ul>
     </nav>
