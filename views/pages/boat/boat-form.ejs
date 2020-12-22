@@ -1,26 +1,26 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
         <h2>Add new boat</h2>
-        <form class="form" novalidate onsubmit="return validateForm();">
+        <form class="form" novalidate onsubmit="return boatValidateForm();">
 
             <label for="boatName">Name: <abbr title="required" aria-label="required">*</abbr></label>
             <input type="text" name="boatName" id="boatName" placeholder="e.g. Zodiac" />
             <span id="errorBoatName" class="errors-text"></span>
 
-            <label for="seats">Seats <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="number" name="seats" id="seats" min="1" placeholder="e.g. 5" />
-            <span id="errorSeats" class="errors-text"></span>
+            <label for="boatSeats">Seats <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="number" name="boatSeats" id="boatSeats" min="1" placeholder="e.g. 5" />
+            <span id="errorBoatSeats" class="errors-text"></span>
 
-            <label for="year">Year <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="number" name="year" id="year" min="1900" placeholder="e.g. 2001" />
-            <span id="errorYear" class="errors-text"></span>
+            <label for="boatYear">Year <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="number" name="boatYear" id="boatYear" min="1900" placeholder="e.g. 2001" />
+            <span id="errorBoatYear" class="errors-text"></span>
 
-            <label for="price">Price <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="number" step="0.01" name="price" min="0" id="price" placeholder="e.g. 100" />
-            <span id="errorPrice" class="errors-text"></span>
+            <label for="boatPrice">Price <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="number" step="0.01" name="boatPrice" min="0" id="boatPrice" placeholder="e.g. 100" />
+            <span id="errorBoatPrice" class="errors-text"></span>
 
             <div class="form-buttons">
-                <p id="errorsSummary" class="errors-text"></p>
+                <p id="errorsSummaryBoat" class="errors-text"></p>
                 <input type="submit" value="Add" class="form-button-submit" />
                 <a href="boat-list.html" class="form-button-cancel">Cancel</a>
             </div>

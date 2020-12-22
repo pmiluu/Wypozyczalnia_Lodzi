@@ -1,13 +1,14 @@
-function validateForm() {
+function boatValidateForm() {
     const boatNameInput = document.getElementById('boatName');
-    const seatsInput = document.getElementById('seats');
-    const yearInput = document.getElementById('year');
-    const priceInput = document.getElementById('price');
+    const seatsInput = document.getElementById('boatSeats');
+    const yearInput = document.getElementById('boatYear');
+    const priceInput = document.getElementById('boatPrice');
 
     const errorBoatName = document.getElementById('errorBoatName');
-    const errorSeats = document.getElementById('errorSeats');
-    const errorYear = document.getElementById('errorYear');
-    const errorPrice = document.getElementById('errorPrice');
+    const errorSeats = document.getElementById('errorBoatSeats');
+    const errorYear = document.getElementById('errorBoatYear');
+    const errorPrice = document.getElementById('errorBoatPrice');
+    const errorsSummary = document.getElementById('errorsSummaryBoat');
 
     resetErrors([boatNameInput, seatsInput, yearInput, priceInput], [errorBoatName, errorSeats, errorYear, errorPrice], errorsSummary);
 

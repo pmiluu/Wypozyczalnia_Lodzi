@@ -1,12 +1,12 @@
-function validateForm() {
-    const firstNameInput = document.getElementById('firstName');
-    const lastNameInput = document.getElementById('lastName');
-    const emailInput = document.getElementById('email');
+function clientValidateForm() {
+    const firstNameInput = document.getElementById('clientFirstName');
+    const lastNameInput = document.getElementById('clientLastName');
+    const emailInput = document.getElementById('clientEmail');
 
-    const errorFirstName = document.getElementById('errorFirstName');
-    const errorLastName = document.getElementById('errorLastName');
-    const errorEmail = document.getElementById('errorEmail');
-    const errorsSummary = document.getElementById('errorsSummary');
+    const errorFirstName = document.getElementById('errorClientFirstName');
+    const errorLastName = document.getElementById('errorClientLastName');
+    const errorEmail = document.getElementById('errorClientEmail');
+    const errorsSummary = document.getElementById('errorsSummaryClient');
 
     resetErrors([firstNameInput, lastNameInput, emailInput], [errorFirstName, errorLastName, errorEmail], errorsSummary);
 

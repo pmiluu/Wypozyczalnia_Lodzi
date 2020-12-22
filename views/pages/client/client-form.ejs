@@ -1,22 +1,22 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
         <h2>Add new client</h2>
-        <form class="form" novalidate onsubmit="return validateForm();">
+        <form class="form" novalidate onsubmit="return clientValidateForm();">
 
-            <label for="firstName">First Name: <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="firstName" id="firstName" placeholder="e.g. John" />
-            <span id="errorFirstName" class="errors-text"></span>
+            <label for="clientFirstName">First Name: <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="clientFristName" id="clientFirstName" placeholder="e.g. John" />
+            <span id="errorClientFirstName" class="errors-text"></span>
 
-            <label for="lastName">Last Name: <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="lastName" id="lastName" placeholder="e.g. Snow" />
-            <span id="errorLastName" class="errors-text"></span>
+            <label for="clientLastName">Last Name: <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="text" name="clientLastName" id="clientLastName" placeholder="e.g. Snow" />
+            <span id="errorClientLastName" class="errors-text"></span>
 
-            <label for="email">E-mail: <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="email" name="email" id="email" placeholder="e.g. name@domain.com" />
-            <span id="errorEmail" class="errors-text"></span>
+            <label for="clientEmail">E-mail: <abbr title="required" aria-label="required">*</abbr></label>
+            <input type="email" name="clientEmail" id="clientEmail" placeholder="e.g. name@domain.com" />
+            <span id="errorClientEmail" class="errors-text"></span>
 
             <div class="form-buttons">
-                <p id="errorsSummary" class="errors-text"></p>
+                <p id="errorsSummaryClient" class="errors-text"></p>
                 <input type="submit" value="Add" class="form-button-submit" />
                 <a href="client-list.html" class="form-button-cancel">Cancel</a>
             </div>

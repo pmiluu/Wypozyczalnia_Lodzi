@@ -1,10 +1,10 @@
-function validateForm() {
+function rentalValidateForm() {
 
-    const dateFromInput = document.getElementById('dateFrom');
+    const dateFromInput = document.getElementById('rentalDateFrom');
 
 
-    const errorDateFrom = document.getElementById('errorDateFrom');
-
+    const errorDateFrom = document.getElementById('errorRentalDateFrom');
+    const errorsSummary = document.getElementById('errorsSummaryRental');
 
     resetErrors([dateFromInput], [errorDateFrom], errorsSummary);
 
