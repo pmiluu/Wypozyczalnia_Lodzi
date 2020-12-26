@@ -9,6 +9,12 @@ const clientRouter = require('./routes/clientRoute');
 const boatRouter = require('./routes/boatRoute');
 const rentalRouter = require('./routes/rentalRoute');
 
+const sequelizeInit = require('./config/sequelize/init');
+sequelizeInit()
+  .catch(err => {
+    console.log(err);
+  });
+
 var app = express();
 
 // view engine setup
