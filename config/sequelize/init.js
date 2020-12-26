@@ -41,7 +41,7 @@ module.exports = () => {
                     { name: 'Alona', seats: 12, year: 2009, price: 80 }
                 ])
                     .then(() => {
-                        return Boat.findAll();
+                        return Client.findAll();
                     });
             } else {
                 return boats;
@@ -49,7 +49,7 @@ module.exports = () => {
         })
         .then(boats => {
             allBoats = boats;
-            return Client.findAll();
+            return Rental.findAll();
         })
         .then(rentals => {
             if (!rentals || rentals.length == 0) {
