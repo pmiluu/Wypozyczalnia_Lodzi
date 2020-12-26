@@ -9,6 +9,8 @@ const clientRouter = require('./routes/clientRoute');
 const boatRouter = require('./routes/boatRoute');
 const rentalRouter = require('./routes/rentalRoute');
 
+const clientApiRouter = require('./routes/api/ClientApiRoute');
+
 const sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
   .catch(err => {
@@ -31,6 +33,7 @@ app.use('/', indexRouter);
 app.use('/clients', clientRouter);
 app.use('/boats', boatRouter);
 app.use('/rentals', rentalRouter);
+app.use('/api/clients', clientApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
