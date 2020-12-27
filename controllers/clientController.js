@@ -11,10 +11,42 @@ exports.showClientList = (req, res, next) => {
 }
 
 exports.showAddClientForm = (req, res, next) => {
-    res.render('pages/client/client-form', { navLocation: 'client' });
+    res.render('pages/client/client-form', {
+        cnt: {},
+        pageTitle: 'New client',
+        formMode: 'createNew',
+        btnLabel: 'Add client',
+        formAction: '/clients/add',
+        navLocation: 'client'
+    });
+}
+
+exports.showEditClientForm = (req, res, next) => {
+    const cntId = req.params.cntId;
+    ClientRepository.getClientById(cntId)
+        .then(cnt => {
+            res.render('pages/client/client-form', {
+                cnt: cnt,
+                formMode: 'edit',
+                pageTitle: 'Edit client',
+                btnLabel: 'Edit client',
+                formAction: '/clients/edit',
+                navLocation: 'client'
+            });
+        });
 }
 
 exports.showClientDetails = (req, res, next) => {
-    res.render('pages/client/client-details', { navLocation: 'client' });
+    const cntId = req.params.cntId;
+    ClientRepository.getClientById(cntId)
+        .then(cnt => {
+            res.render('pages/client/client-form', {
+                cnt: cnt,
+                formMode: 'showDetails',
+                pageTitle: 'Client details',
+                formAction: '',
+                navLocation: 'client'
+            });
+        });
 }
 

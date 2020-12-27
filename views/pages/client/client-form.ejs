@@ -1,26 +1,73 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Add new client</h2>
-        <form class="form" novalidate onsubmit="return clientValidateForm();">
+        <script type="application/javascript" src="../js/validationClientForm.js"></script>
+
+        <h2>
+            <%= pageTitle %>
+        </h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return clientValidateForm();">
+            <input type="hidden" name="_id" value="<%= cnt._id %>">
 
             <label for="clientFirstName">First Name: <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="clientFristName" id="clientFirstName" placeholder="e.g. John" />
+            <input type="text" name="clientFirstName" id="clientFirstName" placeholder="e.g. John"
+                value="<%= cnt.firstName %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
             <span id="errorClientFirstName" class="errors-text"></span>
 
             <label for="clientLastName">Last Name: <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="clientLastName" id="clientLastName" placeholder="e.g. Snow" />
+            <input type="text" name="clientLastName" id="clientLastName" placeholder="e.g. Snow"
+                value="<%= cnt.lastName %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
             <span id="errorClientLastName" class="errors-text"></span>
 
             <label for="clientEmail">E-mail: <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="email" name="clientEmail" id="clientEmail" placeholder="e.g. name@domain.com" />
+            <input type="email" name="clientEmail" id="clientEmail" placeholder="e.g. name@domain.com"
+                value="<%= cnt.email %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
             <span id="errorClientEmail" class="errors-text"></span>
-
-            <div class="form-buttons">
-                <p id="errorsSummaryClient" class="errors-text"></p>
-                <input type="submit" value="Add" class="form-button-submit" />
-                <a href="client-list.html" class="form-button-cancel">Cancel</a>
-            </div>
-
         </form>
+        <% if (formMode=='showDetails' ) { %>
+            <div class="section-buttons">
+                <a href="/clients/edit/<%= cnt._id %>" class="button-edit">Edit</a>
+            </div>
+            <% } %>
+                <% if (formMode=='showDetails' || formMode=='edit' ) { %>
+                    <h2>
+                        Rental details
+                    </h2>
+                    <div class="table-wrapper">
+                        <table class="table-list">
+                            <thead>
+                                <tr>
+                                    <th>Boat</th>
+                                    <th>Date From</th>
+                                    <th>Date To</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (let c of cnt.rentals) { %>
+                                    <tr>
+                                        <td><a href="/boats/boat-details/<%= c.boat._id %>">
+                                                <%= c.boat.name %>
+                                            </a></td>
+                                        <td>
+                                            <%= c.dateFrom.toISOString().split('T')[0] %>
+                                        </td>
+                                        <td>
+                                            <%= c.dateTo ? c.dateTo.toISOString().split('T')[0] : '' %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <% } %>
+                        <div class="form-buttons">
+                            <p id="errorsSummaryClient" class="errors-text"></p>
+                            <% if (formMode !='showDetails' ) { %>
+                                <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                                <a class="form-button-cancel" href="/clients">Cancel</a>
+                                <% } else { %>
+                                    <a class="form-button-cancel" href="/clients">Back</a>
+                                    <% } %>
+                        </div>
+
     </main>
     <%- include('../../fragments/footer.ejs') %>
