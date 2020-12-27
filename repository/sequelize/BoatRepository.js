@@ -14,7 +14,7 @@ exports.getBoatById = (boatID) => {
                 as: 'rentals',
                 include: [{
                     model: Client,
-                    as: 'clients'
+                    as: 'client'
                 }]
             }]
         });
