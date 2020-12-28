@@ -13,65 +13,36 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>pnowa12@acme.com</td>
-                        <td>Zodiac</td>
-                        <td>2020-05-19 10:00:00</td>
-                        <td>2020-05-19 12:00:00</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="rental-details.html" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="rental-edit.html" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>pnowa12@acme.com</td>
-                        <td>Zodiac</td>
-                        <td>2020-06-20 18:00:00</td>
-                        <td>2020-06-20 20:00:00</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="rental-details.html" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="rental-edit.html" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>pnowa12@acme.com</td>
-                        <td>Zodiac</td>
-                        <td>2020-06-21 11:00:00</td>
-                        <td>2020-06-21 14:00:00</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="rental-details.html" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="rental-edit.html" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
+                    <% for (let rental of rentals) { %>
+                        <tr>
+                            <td>
+                                <%= rental.client.email %>
+                            </td>
+                            <td>
+                                <%= rental.boat.name %>
+                            </td>
+                            <td>
+                                <%= rental.dateFrom.toISOString().split('T')[0] %>
+
+                            </td>
+                            <td>
+                                <%= rental.dateTo ? rental.dateTo.toISOString().split('T')[0] : '' %>
+                            </td>
+                            <td>
+                                <ul class="list-actions">
+                                    <li><a href="/rentals/details/<%=rental._id%>"
+                                            class="list-actions-button-details">Details</a></li>
+                                    <li><a href="/rentals/edit/<%=rental._id%>"
+                                            class="list-actions-button-edit">Edit</a></li>
+                                    <li><a href="/rentals/delete/<%=rental._id%>"
+                                            class="list-actions-button-delete">Delete</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
             </table>
         </div>
-        <p><a href="rental-form.html" class="button-add">Add new rental</a></p>
+        <p><a href="/rentals/add" class="button-add">Add new rental</a></p>
     </main>
     <%- include('../../fragments/footer.ejs') %>

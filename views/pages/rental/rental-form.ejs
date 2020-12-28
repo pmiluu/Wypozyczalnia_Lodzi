@@ -3,19 +3,25 @@
         <h2>Add new rental</h2>
         <form class="form" novalidate onsubmit="return rentalValidateForm();">
             <label for="rentalClientEmail">E-mail: <abbr title="required" aria-label="required">*</abbr></label>
-            <select id="rentalClientEmail" name="rentalClientEmail">
-                <option>jan.kowalski@acme.com</option>
-                <option>pnowa12@acme.com</option>
-                <option>kwiatu@acme.com</option>
-                <option>kowalZ11@acme.com</option>
+            <select id="rentalClientEmail" name="client_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                >
+                <option value="" selected>--- Select client ---</option>
+                <% for (let i=0; i<allClients.length; i++) { let cnt=allClients[i]; %>
+                    <option value="<%= cnt._id %>" label="<%= cnt.email %>" <%=(rental._id &&
+                        cnt._id.toString()==rental.client._id.toString()) ? 'selected' : '' %>></option>
+                    <% } %>
             </select>
+
             <span id="errorRentalClientEmail" class="errors-text"></span>
 
             <label for="rentalBoat">Boat name: <abbr title="required" aria-label="required">*</abbr></label>
-            <select id="rentalBoat" name="rentalBoat">
-                <option>Zodiac</option>
-                <option>Bavaria</option>
-                <option>Janmor</option>
+            <select id="rentalBoat" name="boat_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                >
+                <option value="" selected>--- Select boat ---</option>
+                <% for (let i=0; i<allBoats.length; i++) { let bt=allBoats[i]; %>
+                    <option value="<%= bt._id %>" label="<%= bt.name %>" <%=(rental._id &&
+                        bt._id.toString()==rental.boat._id.toString()) ? 'selected' : '' %>></option>
+                    <% } %>
             </select>
             <span id="errorRentalBoat" class="errors-text"></span>
 
