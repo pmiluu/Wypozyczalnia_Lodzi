@@ -49,3 +49,28 @@ exports.showBoatDetails = (req, res, next) => {
             });
         });
 }
+
+exports.addBoat = (req, res, next) => {
+    const btData = { ...req.body };
+    BoatRepository.createBoat(btData)
+        .then(result => {
+            res.redirect('/boats');
+        });
+};
+
+exports.updateBoat = (req, res, next) => {
+    const btId = req.body._id;
+    const btData = { ...req.body };
+    BoatRepository.updateBoat(btId, btData)
+        .then(result => {
+            res.redirect('/boats');
+        });
+};
+
+exports.deleteBoat = (req, res, next) => {
+    const btId = req.params.btId;
+    BoatRepository.deleteBoat(btId)
+        .then(() => {
+            res.redirect('/boats');
+        });
+};
