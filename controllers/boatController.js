@@ -11,9 +11,41 @@ exports.showBoatList = (req, res, next) => {
 }
 
 exports.showAddBoatForm = (req, res, next) => {
-    res.render('pages/boat/boat-form', { navLocation: 'boat' });
+    res.render('pages/boat/boat-form', {
+        bt: {},
+        pageTitle: 'New boat',
+        formMode: 'createNew',
+        btnLabel: 'Add boat',
+        formAction: '/boats/add',
+        navLocation: 'boat'
+    });
 }
 
+exports.showEditBoatForm = (req, res, next) => {
+    const btId = req.params.btId;
+    BoatRepository.getBoatById(btId)
+        .then(bt => {
+            res.render('pages/boat/boat-form', {
+                bt: bt,
+                formMode: 'edit',
+                pageTitle: 'Edit boat',
+                btnLabel: 'Edit boat',
+                formAction: '/boats/edit',
+                navLocation: 'boat'
+            });
+        });
+};
+
 exports.showBoatDetails = (req, res, next) => {
-    res.render('pages/boat/boat-details', { navLocation: 'boat' });
+    const btId = req.params.btId;
+    BoatRepository.getBoatById(btId)
+        .then(bt => {
+            res.render('pages/boat/boat-form', {
+                bt: bt,
+                formMode: 'showDetails',
+                pageTitle: 'Boat details',
+                formAction: '',
+                navLocation: 'boat'
+            });
+        });
 }

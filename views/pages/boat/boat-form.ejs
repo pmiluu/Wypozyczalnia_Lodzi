@@ -1,30 +1,81 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Add new boat</h2>
-        <form class="form" novalidate onsubmit="return boatValidateForm();">
+        <script type="application/javascript" src="../js/validationBoatForm.js"></script>
+        <h2>
+            <%= pageTitle %>
+        </h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return boatValidateForm();">
+            <input type="hidden" name="_id" value="<%= bt._id %>">
 
             <label for="boatName">Name: <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="boatName" id="boatName" placeholder="e.g. Zodiac" />
+            <input type="text" name="name" id="boatName" placeholder="e.g. Zodiac" value="<%= bt.name %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
             <span id="errorBoatName" class="errors-text"></span>
 
             <label for="boatSeats">Seats <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="number" name="boatSeats" id="boatSeats" min="1" placeholder="e.g. 5" />
+            <input type="number" name="seats" id="boatSeats" min="1" placeholder="e.g. 5" value="<%= bt.seats %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
             <span id="errorBoatSeats" class="errors-text"></span>
 
             <label for="boatYear">Year <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="number" name="boatYear" id="boatYear" min="1900" placeholder="e.g. 2001" />
+            <input type="number" name="year" id="boatYear" min="1900" placeholder="e.g. 2001" value="<%= bt.year %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
             <span id="errorBoatYear" class="errors-text"></span>
 
             <label for="boatPrice">Price <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="number" step="0.01" name="boatPrice" min="0" id="boatPrice" placeholder="e.g. 100" />
+            <input type="number" step="0.01" name="price" id="boatPrice" min="0" placeholder="e.g. 100"
+                value="<%= bt.price %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
             <span id="errorBoatPrice" class="errors-text"></span>
 
             <div class="form-buttons">
                 <p id="errorsSummaryBoat" class="errors-text"></p>
-                <input type="submit" value="Add" class="form-button-submit" />
-                <a href="boat-list.html" class="form-button-cancel">Cancel</a>
-            </div>
+                <% if (formMode !='showDetails' ) { %>
+                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                    <a class="form-button-cancel" href="/boats">Cancel</a>
 
+                    <% } %>
+            </div>
         </form>
+
+        <% if (formMode=='showDetails' ) { %>
+            <div class="section-buttons">
+                <a href="/boats/edit/<%= bt._id %>" class="button-edit">Edit</a>
+            </div>
+            <% } %>
+                <% if (formMode=='showDetails' || formMode=='edit' ) { %>
+                    <h2>
+                        Rental details
+                    </h2>
+                    <div class="table-wrapper">
+                        <table class="table-list">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Date From</th>
+                                    <th>Date To</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (let b of bt.rentals) { %>
+                                    <tr>
+                                        <td><a href="/clients/details/<%= b.client._id %>">
+                                                <%= b.client.email %>
+                                            </a></td>
+                                        <td>
+                                            <%= b.dateFrom.toISOString().split('T')[0] %>
+                                        </td>
+                                        <td>
+                                            <%= b.dateTo ? b.dateTo.toISOString().split('T')[0] : '' %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <% } %>
+                        <% if (formMode=='showDetails' ) { %>
+                            <a class="form-button-cancel" href="/boats">Back</a>
+                            <% } %>
+
     </main>
     <%- include('../../fragments/footer.ejs') %>
