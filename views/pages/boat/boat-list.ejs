@@ -13,63 +13,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Zodiac</td>
-                        <td>4</td>
-                        <td>2005</td>
-                        <td>40</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="boat-details.html" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="boat-edit.html" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bavaria</td>
-                        <td>5</td>
-                        <td>2009</td>
-                        <td>50</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="boat-details.html" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="boat-edit.html" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Janmor</td>
-                        <td>12</td>
-                        <td>2003</td>
-                        <td>60</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="boat-details.html" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="boat-edit.html" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
+                    <% for (let boat of boats) { %>
+                        <tr>
+                            <td>
+                                <%= boat.name %>
+                            </td>
+                            <td>
+                                <%= boat.seats %>
+                            </td>
+                            <td>
+                                <%= boat.year %>
+                            </td>
+                            <td>
+                                <%= boat.price %>
+                            </td>
+                            <td>
+                                <ul class="list-actions">
+                                    <li><a href="/boats/details/<%=boat._id%>"
+                                            class="list-actions-button-details">Details</a></li>
+                                    <li><a href="/boats/edit/<%=boat._id%>" class="list-actions-button-edit">Edit</a>
+                                    </li>
+                                    <li><a href="/boats/delete/<%=boat._id%>"
+                                            class="list-actions-button-delete">Delete</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
             </table>
         </div>
         <p><a href="boat-form.html" class="button-add">Add new boat</a></p>

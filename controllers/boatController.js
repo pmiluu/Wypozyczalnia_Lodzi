@@ -1,5 +1,13 @@
+const BoatRepository = require('../repository/sequelize/BoatRepository');
+
 exports.showBoatList = (req, res, next) => {
-    res.render('pages/boat/boat-list', { navLocation: 'boat' });
+    BoatRepository.getBoats()
+        .then(boats => {
+            res.render('pages/boat/boat-list', {
+                boats: boats,
+                navLocation: 'boat'
+            });
+        });
 }
 
 exports.showAddBoatForm = (req, res, next) => {
