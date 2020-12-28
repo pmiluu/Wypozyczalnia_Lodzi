@@ -50,3 +50,27 @@ exports.showClientDetails = (req, res, next) => {
         });
 }
 
+exports.addClient = (req, res, next) => {
+    const cntData = { ...req.body };
+    ClientRepository.createClient(cntData)
+        .then(result => {
+            res.redirect('/clients');
+        });
+};
+
+exports.updateClient = (req, res, next) => {
+    const cntId = req.body._id;
+    const cntData = { ...req.body };
+    ClientRepository.updateClient(cntId, cntData)
+        .then(result => {
+            res.redirect('/clients');
+        });
+};
+
+exports.deleteClient = (req, res, next) => {
+    const cntId = req.params.cntId;
+    ClientRepository.deleteClient(cntId)
+        .then(() => {
+            res.redirect('/clients');
+        });
+};
