@@ -25,3 +25,4 @@ function rentalValidateForm() {
 
     return valid;
 }
+

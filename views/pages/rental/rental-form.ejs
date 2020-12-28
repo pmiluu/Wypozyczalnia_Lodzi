@@ -1,43 +1,93 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Add new rental</h2>
-        <form class="form" novalidate onsubmit="return rentalValidateForm();">
-            <label for="rentalClientEmail">E-mail: <abbr title="required" aria-label="required">*</abbr></label>
+        <script type="application/javascript" src="/js/validationRentalForm.js"></script>
+        <h2>
+            <%= pageTitle %>
+        </h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return rentalValidateForm();">
+            <input type="hidden" name="_id" value="<%= rent._id %>">
+
+            <label for="rentalClientEmail">E-mail: <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
             <select id="rentalClientEmail" name="client_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
                 >
                 <option value="" selected>--- Select client ---</option>
                 <% for (let i=0; i<allClients.length; i++) { let cnt=allClients[i]; %>
-                    <option value="<%= cnt._id %>" label="<%= cnt.email %>" <%=(rental._id &&
-                        cnt._id.toString()==rental.client._id.toString()) ? 'selected' : '' %>></option>
+                    <option value="<%= cnt._id %>" label="<%= cnt.email %>" <%=(rent._id &&
+                        cnt._id.toString()==rent.client._id.toString()) ? 'selected' : '' %>></option>
                     <% } %>
             </select>
-
             <span id="errorRentalClientEmail" class="errors-text"></span>
 
-            <label for="rentalBoat">Boat name: <abbr title="required" aria-label="required">*</abbr></label>
-            <select id="rentalBoat" name="boat_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
-                >
-                <option value="" selected>--- Select boat ---</option>
-                <% for (let i=0; i<allBoats.length; i++) { let bt=allBoats[i]; %>
-                    <option value="<%= bt._id %>" label="<%= bt.name %>" <%=(rental._id &&
-                        bt._id.toString()==rental.boat._id.toString()) ? 'selected' : '' %>></option>
-                    <% } %>
-            </select>
-            <span id="errorRentalBoat" class="errors-text"></span>
+            <% if (formMode=='showDetails' ) { %>
+                <label for="firstName">First name:</label>
+                <input type="text" name="firstName" id="firstName" value="<%= rent.client.firstName %>" disabled />
+                <span></span>
 
-            <label for="rentalDateFrom">Date from <abbr title="required" aria-label="required">*</abbr></label>
-            <input type="datetime-local" name="rentalDateFrom" id="rentalDateFrom">
-            <span id="errorRentalDateFrom" class="errors-text"></span>
+                <label for="lastName">Last name:</label>
+                <input type="text" name="lastName" id="lastName" value="<%= rent.client.lastName %>" disabled />
+                <span></span>
+                <% } %>
 
-            <label for="rentalDateTo">Date to</label>
-            <input type="datetime-local" name="rentalDateTo" id="rentalDateTo">
-            <span id="errorRentalDateTo" class="errors-text"></span>
+                    <label for="rentalBoat">Boat name: <% if (formMode!='showDetails' ) { %><abbr title="required"
+                                aria-label="required">*</abbr>
+                            <% } %></label>
+                    <select id="rentalBoat" name="boat_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+                        >
+                        <option value="" selected>--- Select boat ---</option>
+                        <% for (let i=0; i<allBoats.length; i++) { let bt=allBoats[i]; %>
+                            <option value="<%= bt._id %>" label="<%= bt.name %>" <%=(rent._id &&
+                                bt._id.toString()==rent.boat._id.toString()) ? 'selected' : '' %>></option>
+                            <% } %>
+                    </select>
+                    <span id="errorRentalBoat" class="errors-text"></span>
 
-            <div class="form-buttons">
-                <p id="errorsSummaryRental" class="errors-text"></p>
-                <input type="submit" value="Add" class="form-button-submit" />
-                <a href="rental-list.html" class="form-button-cancel">Cancel</a>
-            </div>
+                    <% if (formMode=='showDetails' ) { %>
+                        <label for="seats">Seats:</label>
+                        <input type="number" name="seats" value="<%= rent.boat.seats %>" id="seats" disabled />
+                        <span></span>
+
+                        <label for="year">Year:</label>
+                        <input type="number" name="year" value="<%= rent.boat.year %>" id="year" disabled />
+                        <span></span>
+
+                        <label for="totalPrice">Total price:</label>
+                        <input type="number" name="totalPrice"
+                            value="<%= rent.boat.price * (Math.abs(rent.dateTo-rent.dateFrom)/3600000) %>"
+                            id="totalPrice" disabled />
+                        <span></span>
+                        <% } %>
+
+                            <label for="rentalDateFrom">Date from: <% if (formMode!='showDetails' ) { %><abbr
+                                        title="required" aria-label="required">*</abbr>
+                                    <% } %></label>
+                            <input type="datetime-local" name="dateFrom" id="rentalDateFrom"
+                                value="<%= (rent.dateFrom)!=null ? rent.dateFrom.toISOString().slice(0,16) : '' %>"
+                                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
+                            <span id="errorRentalDateFrom" class="errors-text"></span>
+
+                            <label for="rentalDateTo">Date to:</label>
+                            <input type="datetime-local" name="dateTo" id="rentalDateTo"
+                                value="<%= (rent.dateTo)!=null ? rent.dateTo.toISOString().slice(0,16) : '' %>"
+                                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
+                            <span id="errorRentalDateTo" class="errors-text"></span>
+
+                            <div class="form-buttons">
+                                <p id="errorsSummaryRental" class="errors-text"></p>
+                                <% if (formMode !='showDetails' ) { %>
+                                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                                    <a class="form-button-cancel" href="/rentals">Cancel</a>
+
+                                    <% } %>
+                            </div>
+
         </form>
+        <% if (formMode=='showDetails' ) { %>
+            <div>
+                <a href="/rentals/edit/<%= rent._id %>" class="button-edit">Edit</a>
+                <a href="/rentals" class="button-back">Back</a>
+            </div>
+            <% } %>
     </main>
     <%- include('../../fragments/footer.ejs') %>
