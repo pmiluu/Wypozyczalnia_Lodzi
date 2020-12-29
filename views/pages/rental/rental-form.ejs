@@ -53,36 +53,37 @@
                         <label for="rentalBoatSeats">Year:</label>
                         <input type="number" name="year" value="<%= rent.boat.year %>" id="rentalBoatSeats" disabled />
                         <span></span>
+                        <% if (rent.dateTo!=null ) { %>
+                            <label for="totalPrice">Total price:</label>
+                            <input type="number" name="totalPrice"
+                                value="<%= (rent.dateTo)!=null ? Math.round(rent.boat.price * (Math.abs(rent.dateTo-rent.dateFrom)/3600000)*100)/100 : -1 %>"
+                                id="totalPrice" disabled />
+                            <span></span>
+                            <% } %>
+                                <% } %>
 
-                        <label for="totalPrice">Total price:</label>
-                        <input type="number" name="totalPrice"
-                            value="<%= (rent.dateTo)!=null ? Math.round(rent.boat.price * (Math.abs(rent.dateTo-rent.dateFrom)/3600000)*100)/100 : -1 %>"
-                            id="totalPrice" disabled />
-                        <span></span>
-                        <% } %>
+                                    <label for="rentalDateFrom">Date from: <% if (formMode!='showDetails' ) { %><abbr
+                                                title="required" aria-label="required">*</abbr>
+                                            <% } %></label>
+                                    <input type="datetime-local" name="dateFrom" id="rentalDateFrom"
+                                        value="<%= (rent.dateFrom)!=null ? rent.dateFrom.toISOString().slice(0,16) : '' %>"
+                                        <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
+                                    <span id="errorRentalDateFrom" class="errors-text"></span>
 
-                            <label for="rentalDateFrom">Date from: <% if (formMode!='showDetails' ) { %><abbr
-                                        title="required" aria-label="required">*</abbr>
-                                    <% } %></label>
-                            <input type="datetime-local" name="dateFrom" id="rentalDateFrom"
-                                value="<%= (rent.dateFrom)!=null ? rent.dateFrom.toISOString().slice(0,16) : '' %>"
-                                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
-                            <span id="errorRentalDateFrom" class="errors-text"></span>
+                                    <label for="rentalDateTo">Date to:</label>
+                                    <input type="datetime-local" name="dateTo" id="rentalDateTo"
+                                        value="<%= (rent.dateTo)!=null ? rent.dateTo.toISOString().slice(0,16) : '' %>"
+                                        <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
+                                    <span id="errorRentalDateTo" class="errors-text"></span>
 
-                            <label for="rentalDateTo">Date to:</label>
-                            <input type="datetime-local" name="dateTo" id="rentalDateTo"
-                                value="<%= (rent.dateTo)!=null ? rent.dateTo.toISOString().slice(0,16) : '' %>"
-                                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
-                            <span id="errorRentalDateTo" class="errors-text"></span>
+                                    <div class="form-buttons">
+                                        <p id="errorsSummaryRental" class="errors-text"></p>
+                                        <% if (formMode !='showDetails' ) { %>
+                                            <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                                            <a class="form-button-cancel" href="/rentals">Cancel</a>
 
-                            <div class="form-buttons">
-                                <p id="errorsSummaryRental" class="errors-text"></p>
-                                <% if (formMode !='showDetails' ) { %>
-                                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
-                                    <a class="form-button-cancel" href="/rentals">Cancel</a>
-
-                                    <% } %>
-                            </div>
+                                            <% } %>
+                                    </div>
 
         </form>
         <% if (formMode=='showDetails' ) { %>
