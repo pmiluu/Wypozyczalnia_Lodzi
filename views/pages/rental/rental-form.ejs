@@ -1,6 +1,6 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <script type="application/javascript" src="/js/validationRentalForm.js"></script>
+        <script type="application/javascript" src="../js/validationRentalForm.js"></script>
         <h2>
             <%= pageTitle %>
         </h2>
@@ -21,12 +21,14 @@
             <span id="errorRentalClientEmail" class="errors-text"></span>
 
             <% if (formMode=='showDetails' ) { %>
-                <label for="firstName">First name:</label>
-                <input type="text" name="firstName" id="firstName" value="<%= rent.client.firstName %>" disabled />
+                <label for="rentalClientFirstName">First name:</label>
+                <input type="text" name="firstName" id="rentalClientFirstName" value="<%= rent.client.firstName %>"
+                    disabled />
                 <span></span>
 
-                <label for="lastName">Last name:</label>
-                <input type="text" name="lastName" id="lastName" value="<%= rent.client.lastName %>" disabled />
+                <label for="rentalClientLastName">Last name:</label>
+                <input type="text" name="lastName" id="rentalClientLastName" value="<%= rent.client.lastName %>"
+                    disabled />
                 <span></span>
                 <% } %>
 
@@ -41,15 +43,16 @@
                                 bt._id.toString()==rent.boat._id.toString()) ? 'selected' : '' %>></option>
                             <% } %>
                     </select>
-                    <span id="errorRentalBoat" class="errors-text"></span>
+                    <span></span>
 
                     <% if (formMode=='showDetails' ) { %>
-                        <label for="seats">Seats:</label>
-                        <input type="number" name="seats" value="<%= rent.boat.seats %>" id="seats" disabled />
+                        <label for="rentalBoatSeats">Seats:</label>
+                        <input type="number" name="seats" value="<%= rent.boat.seats %>" id="rentalBoatSeats"
+                            disabled />
                         <span></span>
 
-                        <label for="year">Year:</label>
-                        <input type="number" name="year" value="<%= rent.boat.year %>" id="year" disabled />
+                        <label for="rentalBoatSeats">Year:</label>
+                        <input type="number" name="year" value="<%= rent.boat.year %>" id="rentalBoatSeats" disabled />
                         <span></span>
 
                         <label for="totalPrice">Total price:</label>

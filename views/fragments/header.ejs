@@ -7,6 +7,10 @@
     <title>Boat Rental</title>
     <link rel="stylesheet" href="/css/style.css" />
 </head>
+<script type="application/javascript" src="/js/validationClientForm.js"></script>
+<script type="application/javascript" src="/js/validationCommon.js"></script>
+<script type="application/javascript" src="/js/validationBoatForm.js"></script>
+<script type="application/javascript" src="/js/validationRentalForm.js"></script>
 
 <body>
     <header>
@@ -15,9 +19,9 @@
     </header>
     <nav>
         <ul>
-            <li><a href="index.html" class="<%= navLocation == 'main' ? 'active' : ''%>">Main Page</a></li>
-            <li><a href="pages/client-list.html" class="<%= navLocation == 'client' ? 'active' : ''%>">Clients</a></li>
-            <li><a href="pages/boat-list.html" class="<%= navLocation == 'boat' ? 'active' : ''%>">Boats</a></li>
-            <li><a href="pages/rental-list.html" class="<%= navLocation == 'rental' ? 'active' : ''%>">Rental</a></li>
+            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Main Page</a></li>
+            <li><a href="/clients" class="<%= navLocation == 'client' ? 'active' : ''%>">Clients</a></li>
+            <li><a href="/boats" class="<%= navLocation == 'boat' ? 'active' : ''%>">Boats</a></li>
+            <li><a href="/rentals" class="<%= navLocation == 'rental' ? 'active' : ''%>">Rental</a></li>
         </ul>
     </nav>
