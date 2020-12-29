@@ -95,7 +95,8 @@ main h2 {
 }
 .list-actions-button-details,
 .list-actions-button-edit,
-.list-actions-button-delete {
+.list-actions-button-delete,
+.rental-details-link{
     display: inline-block;
     width: 75px;
     padding: 0.25rem 0.5rem;
@@ -114,6 +115,10 @@ main h2 {
     text-decoration: none;
     text-align: center;
     font-size: 0.8rem;
+}
+.rental-details-link{
+    text-decoration: none;
+    color:#000000;
 }
 
 .list-actions-button-details,
@@ -237,6 +242,8 @@ abbr[title='required'] {
   border: 3px solid #e74c3c
 }
 
+
+
 @media all and (max-width: 720px) {
     header {
         flex-direction: column;
@@ -283,4 +290,3 @@ abbr[title='required'] {
         flex-basis: 100%;
     }
 }
-

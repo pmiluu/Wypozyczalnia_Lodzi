@@ -54,3 +54,15 @@ function checkEmail(value) {
     const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     return re.test(value);
 }
+
+function checkDate(dateFrom, dateTo) {
+
+    if (dateFrom >= dateTo) {
+        if (dateTo == '') {
+            return true;
+        }
+        return false;
+    }
+
+    return true;
+}

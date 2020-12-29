@@ -1,5 +1,6 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
+        <script type="application/javascript" src="/js/validationClientForm.js"></script>
         <h2>
             <%= pageTitle %>
         </h2>
@@ -58,7 +59,7 @@
                             <tbody>
                                 <% for (let c of cnt.rentals) { %>
                                     <tr>
-                                        <td><a href="/boats/details/<%= c.boat._id %>">
+                                        <td><a class="rental-details-link" href=" /rentals/details/<%=c._id %>">
                                                 <%= c.boat.name %>
                                             </a></td>
                                         <td>

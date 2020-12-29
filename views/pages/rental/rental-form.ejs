@@ -1,6 +1,6 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <script type="application/javascript" src="../js/validationRentalForm.js"></script>
+        <script type="application/javascript" src="/js/validationRentalForm.js"></script>
         <h2>
             <%= pageTitle %>
         </h2>
@@ -35,15 +35,14 @@
                     <label for="rentalBoat">Boat name: <% if (formMode!='showDetails' ) { %><abbr title="required"
                                 aria-label="required">*</abbr>
                             <% } %></label>
-                    <select id="rentalBoat" name="boat_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
-                        >
+                    <select id="rentalBoat" name="boat_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
                         <option value="" selected>--- Select boat ---</option>
                         <% for (let i=0; i<allBoats.length; i++) { let bt=allBoats[i]; %>
                             <option value="<%= bt._id %>" label="<%= bt.name %>" <%=(rent._id &&
                                 bt._id.toString()==rent.boat._id.toString()) ? 'selected' : '' %>></option>
                             <% } %>
                     </select>
-                    <span></span>
+                    <span id="errorRentalBoat" class="errors-text"></span>
 
                     <% if (formMode=='showDetails' ) { %>
                         <label for="rentalBoatSeats">Seats:</label>
@@ -57,7 +56,7 @@
 
                         <label for="totalPrice">Total price:</label>
                         <input type="number" name="totalPrice"
-                            value="<%= rent.boat.price * (Math.abs(rent.dateTo-rent.dateFrom)/3600000) %>"
+                            value="<%= (rent.dateTo)!=null ? Math.round(rent.boat.price * (Math.abs(rent.dateTo-rent.dateFrom)/3600000)*100)/100 : -1 %>"
                             id="totalPrice" disabled />
                         <span></span>
                         <% } %>
