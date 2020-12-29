@@ -6,22 +6,30 @@
         <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return boatValidateForm();">
             <input type="hidden" name="_id" value="<%= bt._id %>">
 
-            <label for="boatName">Name: <abbr title="required" aria-label="required">*</abbr></label>
+            <label for="boatName">Name: <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
             <input type="text" name="name" id="boatName" placeholder="e.g. Zodiac" value="<%= bt.name %>"
                 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
             <span id="errorBoatName" class="errors-text"></span>
 
-            <label for="boatSeats">Seats <abbr title="required" aria-label="required">*</abbr></label>
+            <label for="boatSeats">Seats <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
             <input type="number" name="seats" id="boatSeats" min="1" placeholder="e.g. 5" value="<%= bt.seats %>"
                 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
             <span id="errorBoatSeats" class="errors-text"></span>
 
-            <label for="boatYear">Year <abbr title="required" aria-label="required">*</abbr></label>
+            <label for="boatYear">Year <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
             <input type="number" name="year" id="boatYear" min="1900" placeholder="e.g. 2001" value="<%= bt.year %>"
                 <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
             <span id="errorBoatYear" class="errors-text"></span>
 
-            <label for="boatPrice">Price <abbr title="required" aria-label="required">*</abbr></label>
+            <label for="boatPrice">Price <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
             <input type="number" step="0.01" name="price" id="boatPrice" min="0" placeholder="e.g. 100"
                 value="<%= bt.price %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
             <span id="errorBoatPrice" class="errors-text"></span>
