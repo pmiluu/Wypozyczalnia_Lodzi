@@ -32,6 +32,12 @@ function rentalValidateForm() {
         dateFromInput.classList.add("error-input");
         errorDateFrom.innerText = "This field is required";
     }
+
+    if (!checkRequired(dateToInput.value)) {
+        valid = false;
+        dateToInput.classList.add("error-input");
+        errorDateTo.innerText = "This field is required";
+    }
     if (!checkDate(dateFromInput.value, dateToInput.value)) {
         valid = false;
         dateToInput.classList.add("error-input");

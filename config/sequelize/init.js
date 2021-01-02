@@ -37,8 +37,8 @@ module.exports = () => {
         .then(boats => {
             if (!boats || boats.length == 0) {
                 return Boat.bulkCreate([
-                    { name: 'Zodiac', seats: 5, year: 2003, price: 60 },
-                    { name: 'Alona', seats: 12, year: 2009, price: 80 }
+                    { name: 'Zodiac', seats: 5, year: 2003, price: 5 },
+                    { name: 'Alona', seats: 12, year: 2009, price: 10 }
                 ])
                     .then(() => {
                         return Client.findAll();
@@ -54,9 +54,9 @@ module.exports = () => {
         .then(rentals => {
             if (!rentals || rentals.length == 0) {
                 return Rental.bulkCreate([
-                    { client_id: allClients[0]._id, boat_id: allBoats[0]._id, dateFrom: '2018-01-01', dateTo: '2018-02-01' },
-                    { client_id: allClients[1]._id, boat_id: allBoats[1]._id, dateFrom: '2018-02-01', dateTo: '2018-02-08' },
-                    { client_id: allClients[0]._id, boat_id: allBoats[0]._id, dateFrom: '2018-05-06', dateTo: null }
+                    { client_id: allClients[0]._id, boat_id: allBoats[0]._id, dateFrom: '2018-01-01T11:20', dateTo: '2018-01-03T11:20' },
+                    { client_id: allClients[1]._id, boat_id: allBoats[1]._id, dateFrom: '2018-02-01T10:30', dateTo: '2018-02-08T12:00' },
+                    { client_id: allClients[0]._id, boat_id: allBoats[0]._id, dateFrom: '2018-05-06T12:00', dateTo: '2018-05-08T18:00' }
                 ]);
             } else {
                 return rentals;
