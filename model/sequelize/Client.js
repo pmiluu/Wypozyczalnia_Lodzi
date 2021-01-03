@@ -10,16 +10,46 @@ const Client = sequelize.define('Client', {
     },
     firstName: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required"
+            },
+            len: {
+                args: [2, 60],
+                msg: "This field must contain 2-60 characters"
+            }
+        }
     },
     lastName: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required"
+            },
+            len: {
+                args: [2, 60],
+                msg: "This field must contain 2-60 characters"
+            }
+        }
     },
     email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        validate: {
+            notEmpty: {
+                msg: "This field is required"
+            },
+            len: {
+                args: [5, 60],
+                msg: "This field must contain 5-60 characters"
+            },
+            isEmail: {
+                msg: "Invalid e-mail address"
+            }
+        }
     }
 });
 

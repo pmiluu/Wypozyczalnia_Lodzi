@@ -5,22 +5,32 @@
             <%= pageTitle %>
         </h2>
 
-        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return clientValidateForm();">
+        <form class="form" method="post" action="<%=formAction%>" novalidate>
             <input type="hidden" name="_id" value="<%= cnt._id %>">
 
             <label for="clientFirstName">First Name: <% if (formMode!='showDetails' ) { %><abbr title="required"
                         aria-label="required">*</abbr>
                     <% } %></label>
-            <input type="text" name="firstName" id="clientFirstName" placeholder="e.g. John"
-                value="<%= cnt.firstName %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
-            <span id="errorClientFirstName" class="errors-text"></span>
+            <input class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>"
+                type="text" name="firstName" id="clientFirstName" placeholder="e.g. John" value="<%= cnt.firstName %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorClientFirstName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('firstName'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('firstName')).message %>
+                        <% } %>
+            </span>
 
             <label for="clientLastName">Last Name: <% if (formMode!='showDetails' ) { %><abbr title="required"
                         aria-label="required">*</abbr>
                     <% } %></label>
-            <input type="text" name="lastName" id="clientLastName" placeholder="e.g. Snow" value="<%= cnt.lastName %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>"
+                type="text" name="lastName" id="clientLastName" placeholder="e.g. Snow" value="<%= cnt.lastName %>"
                 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
-            <span id="errorClientLastName" class="errors-text"></span>
+            <span id="errorClientLastName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('lastName'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('lastName')).message %>
+                        <% } %>
+            </span>
 
             <label for="clientEmail">E-mail: <% if (formMode!='showDetails' ) { %><abbr title="required"
                         aria-label="required">*</abbr>

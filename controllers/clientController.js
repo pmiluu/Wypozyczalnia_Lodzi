@@ -17,7 +17,9 @@ exports.showAddClientForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Add client',
         formAction: '/clients/add',
-        navLocation: 'client'
+        navLocation: 'client',
+        validationErrors: []
+
     });
 }
 
@@ -55,6 +57,17 @@ exports.addClient = (req, res, next) => {
     ClientRepository.createClient(cntData)
         .then(result => {
             res.redirect('/clients');
+        })
+        .catch(err => {
+            res.render('pages/client/client-form', {
+                cnt: cntData,
+                pageTitle: 'New client',
+                formMode: 'createNew',
+                btnLabel: 'Add client',
+                formAction: '/clients/add',
+                navLocation: 'client',
+                validationErrors: err.errors
+            });
         });
 };
 
@@ -64,6 +77,17 @@ exports.updateClient = (req, res, next) => {
     ClientRepository.updateClient(cntId, cntData)
         .then(result => {
             res.redirect('/clients');
+        })
+        .catch(err => {
+            res.render('pages/client/client-form', {
+                cnt: cntData,
+                formMode: 'edit',
+                pageTitle: 'Edit client',
+                btnLabel: 'Edit client',
+                formAction: '/clients/edit',
+                navLocation: 'client',
+                validationErrors: err.errors
+            });
         });
 };
 
@@ -74,3 +98,4 @@ exports.deleteClient = (req, res, next) => {
             res.redirect('/clients');
         });
 };
+
