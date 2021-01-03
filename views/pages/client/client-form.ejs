@@ -5,7 +5,7 @@
             <%= pageTitle %>
         </h2>
 
-        <form class="form" method="post" action="<%=formAction%>" novalidate>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return clientValidateForm();">
             <input type="hidden" name="_id" value="<%= cnt._id %>">
 
             <label for="clientFirstName">First Name: <% if (formMode!='showDetails' ) { %><abbr title="required"
@@ -35,9 +35,14 @@
             <label for="clientEmail">E-mail: <% if (formMode!='showDetails' ) { %><abbr title="required"
                         aria-label="required">*</abbr>
                     <% } %></label>
-            <input type="email" name="email" id="clientEmail" placeholder="e.g. name@domain.com"
-                value="<%= cnt.email %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
-            <span id="errorClientEmail" class="errors-text"></span>
+            <input class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>" type="email"
+                name="email" id="clientEmail" placeholder="e.g. name@domain.com" value="<%= cnt.email %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
+            <span id="errorClientEmail" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('email'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('email')).message %>
+                        <% } %>
+            </span>
             <div class="form-buttons">
                 <p id="errorsSummaryClient" class="errors-text"></p>
                 <% if (formMode !='showDetails' ) { %>

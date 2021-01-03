@@ -59,6 +59,11 @@ exports.addClient = (req, res, next) => {
             res.redirect('/clients');
         })
         .catch(err => {
+            err.errors.forEach(e => {
+                if (e.path.includes('email') && e.type == 'unique violation') {
+                    e.message = "Email address is not unique";
+                }
+            });
             res.render('pages/client/client-form', {
                 cnt: cntData,
                 pageTitle: 'New client',
