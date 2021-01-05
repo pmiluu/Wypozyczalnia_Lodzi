@@ -29,9 +29,6 @@ exports.createClient = (newClientData) => {
 };
 
 exports.updateClient = (clientID, clientData) => {
-    const firstName = clientData.firstName;
-    const lastName = clientData.lastName;
-    const email = clientData.email;
     return Client.update(clientData, { where: { _id: clientID } });
 };
 
