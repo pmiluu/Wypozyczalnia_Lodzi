@@ -22,7 +22,7 @@ const Rental = sequelize.define('Rental', {
     },
     dateTo: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
     }
 });
 
