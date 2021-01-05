@@ -11,6 +11,7 @@ exports.showClientList = (req, res, next) => {
 }
 
 exports.showAddClientForm = (req, res, next) => {
+    const validationErrors = [];
     res.render('pages/client/client-form', {
         cnt: {},
         pageTitle: 'New client',
@@ -18,13 +19,14 @@ exports.showAddClientForm = (req, res, next) => {
         btnLabel: 'Add client',
         formAction: '/clients/add',
         navLocation: 'client',
-        validationErrors: []
+        validationErrors: validationErrors
 
     });
 }
 
 exports.showEditClientForm = (req, res, next) => {
     const cntId = req.params.cntId;
+    const validationErrors = [];
     ClientRepository.getClientById(cntId)
         .then(cnt => {
             res.render('pages/client/client-form', {
@@ -33,13 +35,15 @@ exports.showEditClientForm = (req, res, next) => {
                 pageTitle: 'Edit client',
                 btnLabel: 'Edit client',
                 formAction: '/clients/edit',
-                navLocation: 'client'
+                navLocation: 'client',
+                validationErrors: validationErrors
             });
         });
 }
 
 exports.showClientDetails = (req, res, next) => {
     const cntId = req.params.cntId;
+    const validationErrors = [];
     ClientRepository.getClientById(cntId)
         .then(cnt => {
             res.render('pages/client/client-form', {
@@ -47,7 +51,8 @@ exports.showClientDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Client details',
                 formAction: '',
-                navLocation: 'client'
+                navLocation: 'client',
+                validationErrors: validationErrors
             });
         });
 }
@@ -84,6 +89,11 @@ exports.updateClient = (req, res, next) => {
             res.redirect('/clients');
         })
         .catch(err => {
+            err.errors.forEach(e => {
+                if (e.path.includes('email') && e.type == 'unique violation') {
+                    e.message = "Email address is not unique";
+                }
+            });
             res.render('pages/client/client-form', {
                 cnt: cntData,
                 formMode: 'edit',
