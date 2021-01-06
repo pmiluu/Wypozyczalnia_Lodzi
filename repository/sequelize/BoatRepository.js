@@ -30,10 +30,6 @@ exports.createBoat = (newBoatData) => {
 };
 
 exports.updateBoat = (boatID, boatData) => {
-    const name = boatData.name;
-    const seats = boatData.seats;
-    const year = boatData.year;
-    const price = boatData.price;
     return Boat.update(boatData, { where: { _id: boatID } });
 };
 

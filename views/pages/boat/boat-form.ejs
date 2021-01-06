@@ -4,36 +4,56 @@
         <h2>
             <%= pageTitle %>
         </h2>
-        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return boatValidateForm();">
+        <form class="form" method="post" action="<%=formAction%>">
             <input type="hidden" name="_id" value="<%= bt._id %>">
 
             <label for="boatName">Name: <% if (formMode!='showDetails' ) { %><abbr title="required"
                         aria-label="required">*</abbr>
                     <% } %></label>
-            <input type="text" name="name" id="boatName" placeholder="e.g. Zodiac" value="<%= bt.name %>"
-                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
-            <span id="errorBoatName" class="errors-text"></span>
+            <input class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>" type="text"
+                name="name" id="boatName" placeholder="e.g. Zodiac" value="<%= bt.name %>" <%=(formMode=='showDetails' )
+                ? 'disabled' : '' %>/>
+            <span id="errorBoatName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                        <% } %>
+            </span>
 
             <label for="boatSeats">Seats: <% if (formMode!='showDetails' ) { %><abbr title="required"
                         aria-label="required">*</abbr>
                     <% } %></label>
-            <input type="number" name="seats" id="boatSeats" min="1" placeholder="e.g. 5" value="<%= bt.seats %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('seats')) ? 'error-input' : '' %>"
+                type="number" name="seats" id="boatSeats" min="1" placeholder="e.g. 5" value="<%= bt.seats %>"
                 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
-            <span id="errorBoatSeats" class="errors-text"></span>
+            <span id="errorBoatSeats" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('seats'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('seats')).message %>
+                        <% } %>
+            </span>
 
             <label for="boatYear">Year: <% if (formMode!='showDetails' ) { %><abbr title="required"
                         aria-label="required">*</abbr>
                     <% } %></label>
-            <input type="number" name="year" id="boatYear" min="1900" placeholder="e.g. 2001" value="<%= bt.year %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('year')) ? 'error-input' : '' %>" type="number"
+                name="year" id="boatYear" min="1900" placeholder="e.g. 2001" value="<%= bt.year %>"
                 <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
-            <span id="errorBoatYear" class="errors-text"></span>
+            <span id="errorBoatYear" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('year'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('year')).message %>
+                        <% } %>
+            </span>
 
             <label for="boatPrice">Price: <% if (formMode!='showDetails' ) { %><abbr title="required"
                         aria-label="required">*</abbr>
                     <% } %></label>
-            <input type="number" step="0.01" name="price" id="boatPrice" min="0" placeholder="e.g. 100"
+            <input class="<%= validationErrors.find(e => e.path.includes('price')) ? 'error-input' : '' %>"
+                type="number" step="0.01" name="price" id="boatPrice" min="0" placeholder="e.g. 100"
                 value="<%= bt.price %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
-            <span id="errorBoatPrice" class="errors-text"></span>
+            <span id="errorBoatPrice" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('price'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('price')).message %>
+                        <% } %>
+            </span>
 
             <div class="form-buttons">
                 <p id="errorsSummaryBoat" class="errors-text"></p>
@@ -64,7 +84,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% for (let b of bt.rentals) { %>
+                                <% for (let b of bRentals) { %>
                                     <tr>
                                         <td><a class="rental-details-link" href="/rentals/details/<%= b._id %>">
                                                 <%= b.client.email %>

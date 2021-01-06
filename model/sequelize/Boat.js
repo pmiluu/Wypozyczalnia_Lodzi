@@ -10,19 +10,59 @@ const Boat = sequelize.define('Boat', {
     },
     name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required"
+            },
+            len: {
+                args: [2, 60],
+                msg: "This field must contain 2-60 characters"
+            }
+        }
     },
     seats: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required"
+            },
+            isInt: {
+                msg: "This field must be integer"
+            },
+            max: 100,
+            min: 1
+
+        }
     },
     year: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required"
+            },
+            isInt: {
+                msg: "This field must be integer"
+            },
+            min: 1900
+
+        }
     },
     price: {
         type: Sequelize.DOUBLE,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required"
+            },
+            isDecimal: {
+                msg: "This field must be number"
+            },
+            min: 0
+
+        }
     }
 });
 
