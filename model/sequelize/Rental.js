@@ -10,19 +10,40 @@ const Rental = sequelize.define('Rental', {
     },
     client_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required"
+            }
+        }
     },
     boat_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required"
+            }
+        }
     },
     dateFrom: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isDate: {
+                msg: "Invalid date"
+            }
+        }
     },
     dateTo: {
         type: Sequelize.DATE,
-        allowNull: true
+        allowNull: true,
+        validate: {
+
+            isDate: {
+                msg: "Invalid date"
+            }
+        }
     }
 });
 

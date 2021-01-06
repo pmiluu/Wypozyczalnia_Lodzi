@@ -10,15 +10,22 @@
             <label for="rentalClientEmail">E-mail: <% if (formMode!='showDetails' ) { %><abbr title="required"
                         aria-label="required">*</abbr>
                     <% } %></label>
-            <select id="rentalClientEmail" name="client_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
+            <select class="<%= validationErrors.find(e => e.path.includes('client_id')) ? 'error-input' : '' %>"
+                id="rentalClientEmail" name="client_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
                 >
-                <option value="" selected>--- Select client ---</option>
+                <option value="<%=rentData.client_id %>" selected label="<%=rentData.client_id %>">--- Select client
+                    ---
+                </option>
                 <% for (let i=0; i<allClients.length; i++) { let cnt=allClients[i]; %>
                     <option value="<%= cnt._id %>" label="<%= cnt.email %>" <%=(rent._id &&
                         cnt._id.toString()==rent.client._id.toString()) ? 'selected' : '' %>></option>
                     <% } %>
             </select>
-            <span id="errorRentalClientEmail" class="errors-text"></span>
+            <span id="errorRentalClientEmail" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('client_id'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('client_id')).message %>
+                        <% } %>
+            </span>
 
             <% if (formMode=='showDetails' ) { %>
                 <label for="rentalClientFirstName">First name:</label>
@@ -35,14 +42,20 @@
                     <label for="rentalBoat">Boat name: <% if (formMode!='showDetails' ) { %><abbr title="required"
                                 aria-label="required">*</abbr>
                             <% } %></label>
-                    <select id="rentalBoat" name="boat_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
-                        <option value="" selected>--- Select boat ---</option>
+                    <select class="<%= validationErrors.find(e => e.path.includes('boat_id')) ? 'error-input' : '' %>"
+                        id="rentalBoat" name="boat_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
+                        <option value="<%=rentData.boat_id %>" selected label="<%=rentData.boat_id %>">--- Select boat
+                            ---</option>
                         <% for (let i=0; i<allBoats.length; i++) { let bt=allBoats[i]; %>
                             <option value="<%= bt._id %>" label="<%= bt.name %>" <%=(rent._id &&
                                 bt._id.toString()==rent.boat._id.toString()) ? 'selected' : '' %>></option>
                             <% } %>
                     </select>
-                    <span id="errorRentalBoat" class="errors-text"></span>
+                    <span id="errorRentalBoat" class="errors-text">
+                        <% if (validationErrors.find(e=> e.path.includes('boat_id'))) { %>
+                            <%= validationErrors.find(e=> e.path.includes('boat_id')).message %>
+                                <% } %>
+                    </span>
 
                     <% if (formMode=='showDetails' ) { %>
                         <label for="rentalBoatSeats">Seats:</label>
@@ -65,27 +78,68 @@
                             <label for="rentalDateFrom">Date from: <% if (formMode!='showDetails' ) { %><abbr
                                         title="required" aria-label="required">*</abbr>
                                     <% } %></label>
-                            <input type="datetime-local" name="dateFrom" id="rentalDateFrom"
-                                value="<%= (rent.dateFrom)!=null ? rent.dateFrom.toISOString().slice(0,16) : '' %>"
-                                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
-                            <span id="errorRentalDateFrom" class="errors-text"></span>
+                            <% if (formMode=='createNew' ) { %>
+                                <input
+                                    class="<%= validationErrors.find(e => e.path.includes('dateFrom')) ? 'error-input' : '' %>"
+                                    type="datetime-local" name="dateFrom" id="rentalDateFrom"
+                                    value="<%=rentData.dateFrom %>">
+                                <span id="errorRentalDateFrom" class="errors-text">
+                                    <% if (validationErrors.find(e=> e.path.includes('dateFrom'))) { %>
+                                        <%= validationErrors.find(e=> e.path.includes('dateFrom')).message %>
+                                            <% } %>
+                                </span>
+                                <% } else { %>
 
-                            <label for="rentalDateTo">Date to: <% if (formMode!='showDetails' ) { %><abbr
-                                        title="required" aria-label="required">*</abbr>
-                                    <% } %></label></label>
-                            <input type="datetime-local" name="dateTo" id="rentalDateTo"
-                                value="<%= (rent.dateTo)!=null ? rent.dateTo.toISOString().slice(0,16) : '' %>"
-                                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
-                            <span id="errorRentalDateTo" class="errors-text"></span>
-
-                            <div class="form-buttons">
-                                <p id="errorsSummaryRental" class="errors-text"></p>
-                                <% if (formMode !='showDetails' ) { %>
-                                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
-                                    <a class="form-button-cancel" href="/rentals">Cancel</a>
-
+                                    <input
+                                        class="<%= validationErrors.find(e => e.path.includes('dateFrom')) ? 'error-input' : '' %>"
+                                        type="datetime-local" name="dateFrom" id="rentalDateFrom"
+                                        value="<%= (rent.dateFrom)!=null ? rent.dateFrom.toISOString().slice(0,16) : '' %>"
+                                        <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
+                                    <span id="errorRentalDateFrom" class="errors-text">
+                                        <% if (validationErrors.find(e=> e.path.includes('dateFrom'))) { %>
+                                            <%= validationErrors.find(e=> e.path.includes('dateFrom')).message %>
+                                                <% } %>
+                                    </span>
                                     <% } %>
-                            </div>
+
+
+                                        <label for="rentalDateTo">Date to: <% if (formMode!='showDetails' ) { %><abbr
+                                                    title="required" aria-label="required">*</abbr>
+                                                <% } %></label></label>
+                                        <% if (formMode=='createNew' ) { %>
+                                            <input
+                                                class="<%= validationErrors.find(e => e.path.includes('dateTo')) ? 'error-input' : '' %>"
+                                                type="datetime-local" name="dateTo" id="rentalDateTo"
+                                                value="<%= rentData.dateTo %>">
+                                            <span id="errorRentalDateTo" class="errors-text">
+                                                <% if (validationErrors.find(e=> e.path.includes('dateTo'))) { %>
+                                                    <%= validationErrors.find(e=> e.path.includes('dateTo')).message %>
+                                                        <% } %>
+                                            </span>
+                                            <% } else { %>
+
+                                                <input
+                                                    class="<%= validationErrors.find(e => e.path.includes('dateTo')) ? 'error-input' : '' %>"
+                                                    type="datetime-local" name="dateTo" id="rentalDateTo"
+                                                    value="<%= (rent.dateTo)!=null ? rent.dateTo.toISOString().slice(0,16) : '' %>"
+                                                    <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
+                                                <span id="errorRentalDateTo" class="errors-text">
+                                                    <% if (validationErrors.find(e=> e.path.includes('dateTo'))) { %>
+                                                        <%= validationErrors.find(e=> e.path.includes('dateTo')).message
+                                                            %>
+                                                            <% } %>
+                                                </span>
+                                                <% } %>
+
+                                                    <div class="form-buttons">
+                                                        <p id="errorsSummaryRental" class="errors-text"></p>
+                                                        <% if (formMode !='showDetails' ) { %>
+                                                            <input class="form-button-submit" type="submit"
+                                                                value="<%=btnLabel%>" />
+                                                            <a class="form-button-cancel" href="/rentals">Cancel</a>
+
+                                                            <% } %>
+                                                    </div>
 
         </form>
         <% if (formMode=='showDetails' ) { %>
