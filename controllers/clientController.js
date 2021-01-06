@@ -31,6 +31,7 @@ exports.showEditClientForm = (req, res, next) => {
         .then(cnt => {
             res.render('pages/client/client-form', {
                 cnt: cnt,
+                cRentals: cnt.rentals,
                 formMode: 'edit',
                 pageTitle: 'Edit client',
                 btnLabel: 'Edit client',
@@ -48,6 +49,7 @@ exports.showClientDetails = (req, res, next) => {
         .then(cnt => {
             res.render('pages/client/client-form', {
                 cnt: cnt,
+                cRentals: cnt.rentals,
                 formMode: 'showDetails',
                 pageTitle: 'Client details',
                 formAction: '',
@@ -84,6 +86,8 @@ exports.addClient = (req, res, next) => {
 exports.updateClient = (req, res, next) => {
     const cntId = req.body._id;
     const cntData = { ...req.body };
+
+
     ClientRepository.updateClient(cntId, cntData)
         .then(result => {
             res.redirect('/clients');
@@ -94,16 +98,23 @@ exports.updateClient = (req, res, next) => {
                     e.message = "Email address is not unique";
                 }
             });
-            res.render('pages/client/client-form', {
-                cnt: cntData,
-                formMode: 'edit',
-                pageTitle: 'Edit client',
-                btnLabel: 'Edit client',
-                formAction: '/clients/edit',
-                navLocation: 'client',
-                validationErrors: err.errors
-            });
+
+            ClientRepository.getClientById(cntId)
+                .then(cnt => {
+                    res.render('pages/client/client-form', {
+                        cnt: cntData,
+                        cRentals: cnt.rentals,
+                        pageTitle: 'Edit client',
+                        formMode: 'edit',
+                        btnLabel: 'Edit client',
+                        formAction: '/clients/edit',
+                        navLocation: 'client',
+                        validationErrors: err.errors
+                    });
+                });
         });
+
+
 };
 
 exports.deleteClient = (req, res, next) => {

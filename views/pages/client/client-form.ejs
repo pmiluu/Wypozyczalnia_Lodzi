@@ -5,7 +5,7 @@
             <%= pageTitle %>
         </h2>
 
-        <form class="form" method="post" action="<%=formAction%>">
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return clientValidateForm();">
             <input type="hidden" name="_id" value="<%= cnt._id %>">
 
             <label for="clientFirstName">First Name: <% if (formMode!='showDetails' ) { %><abbr title="required"
@@ -72,7 +72,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% for (let c of cnt.rentals) { %>
+                                <% for (let c of cRentals) { %>
                                     <tr>
                                         <td><a class="rental-details-link" href=" /rentals/details/<%=c._id %>">
                                                 <%= c.boat.name %>
