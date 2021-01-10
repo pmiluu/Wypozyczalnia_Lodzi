@@ -42,6 +42,11 @@ const Rental = sequelize.define('Rental', {
 
             isDate: {
                 msg: "Invalid date"
+            },
+            isGreaterThanDateFrom: function (value) {
+                if (value < this.dateFrom) {
+                    throw new Error("Date from is later than date to");
+                }
             }
         }
     }

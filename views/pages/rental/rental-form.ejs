@@ -4,7 +4,7 @@
         <h2>
             <%= pageTitle %>
         </h2>
-        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return rentalValidateForm();">
+        <form class="form" method="post" action="<%=formAction%>" novalidate>
             <input type="hidden" name="_id" value="<%= rent._id %>">
 
             <label for="rentalClientEmail">E-mail: <% if (formMode!='showDetails' ) { %><abbr title="required"
@@ -13,13 +13,16 @@
             <select class="<%= validationErrors.find(e => e.path.includes('client_id')) ? 'error-input' : '' %>"
                 id="rentalClientEmail" name="client_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
                 >
-                <option value="<%=rentData.client_id %>" selected label="<%=rentData.client_id %>">--- Select client
-                    ---
-                </option>
-                <% for (let i=0; i<allClients.length; i++) { let cnt=allClients[i]; %>
-                    <option value="<%= cnt._id %>" label="<%= cnt.email %>" <%=(rent._id &&
-                        cnt._id.toString()==rent.client._id.toString()) ? 'selected' : '' %>></option>
+                <% if (formMode=='createNew' ) { %>
+                    <option value="" selected>--- Select client
+                        ---
+                    </option>
                     <% } %>
+                        <% for (let i=0; i<allClients.length; i++) { let cnt=allClients[i]; %>
+                            <option value="<%= cnt._id %>" label="<%= cnt.email %>" <%=((rent._id &&
+                                cnt._id.toString()==rent.client._id.toString())||rentData.client_id==cnt._id.toString())
+                                ? 'selected' : '' %>></option>
+                            <% } %>
             </select>
             <span id="errorRentalClientEmail" class="errors-text">
                 <% if (validationErrors.find(e=> e.path.includes('client_id'))) { %>
@@ -44,12 +47,15 @@
                             <% } %></label>
                     <select class="<%= validationErrors.find(e => e.path.includes('boat_id')) ? 'error-input' : '' %>"
                         id="rentalBoat" name="boat_id" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
-                        <option value="<%=rentData.boat_id %>" selected label="<%=rentData.boat_id %>">--- Select boat
-                            ---</option>
-                        <% for (let i=0; i<allBoats.length; i++) { let bt=allBoats[i]; %>
-                            <option value="<%= bt._id %>" label="<%= bt.name %>" <%=(rent._id &&
-                                bt._id.toString()==rent.boat._id.toString()) ? 'selected' : '' %>></option>
+                        <% if (formMode=='createNew' ) { %>
+                            <option value="" selected>--- Select boat
+                                ---</option>
                             <% } %>
+                                <% for (let i=0; i<allBoats.length; i++) { let bt=allBoats[i]; %>
+                                    <option value="<%= bt._id %>" label="<%= bt.name %>" <%=((rent._id &&
+                                        bt._id.toString()==rent.boat._id.toString())||rentData.boat_id==bt._id.toString())
+                                        ? 'selected' : '' %>></option>
+                                    <% } %>
                     </select>
                     <span id="errorRentalBoat" class="errors-text">
                         <% if (validationErrors.find(e=> e.path.includes('boat_id'))) { %>
