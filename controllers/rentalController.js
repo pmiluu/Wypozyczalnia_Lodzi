@@ -33,6 +33,7 @@ exports.showAddRentalForm = (req, res, next) => {
                 navLocation: 'rental',
                 validationErrors: validationErrors
             });
+
         });
 }
 
@@ -54,7 +55,7 @@ exports.showEditRentalForm = (req, res, next) => {
         .then(rent => {
             res.render('pages/rental/rental-form', {
                 rent: rent,
-                rentData: rent,
+                rentData: {},
                 formMode: 'edit',
                 allClients: allClients,
                 allBoats: allBoats,
@@ -154,8 +155,10 @@ exports.updateRental = (req, res, next) => {
                     return RentalRepository.getRentalById(rentId);
 
                 }).then(rent => {
+
                     res.render('pages/rental/rental-form', {
                         rent: rent,
+                        rentData: rentData,
                         formMode: 'edit',
                         allClients: allClients,
                         allBoats: allBoats,

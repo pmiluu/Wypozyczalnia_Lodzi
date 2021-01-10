@@ -4,7 +4,7 @@
         <h2>
             <%= pageTitle %>
         </h2>
-        <form class="form" method="post" action="<%=formAction%>" novalidate>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return boatValidateForm();">
             <input type="hidden" name="_id" value="<%= bt._id %>">
 
             <label for="boatName">Name: <% if (formMode!='showDetails' ) { %><abbr title="required"
