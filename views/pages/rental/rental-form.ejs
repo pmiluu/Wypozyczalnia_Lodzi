@@ -4,7 +4,7 @@
         <h2>
             <%= pageTitle %>
         </h2>
-        <form class="form" method="post" action="<%=formAction%>" novalidate>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return rentalValidateForm();">
             <input type="hidden" name="_id" value="<%= rent._id %>">
 
 
