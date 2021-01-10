@@ -4,8 +4,9 @@
         <h2>
             <%= pageTitle %>
         </h2>
-        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return rentalValidateForm();">
+        <form class="form" method="post" action="<%=formAction%>" novalidate>
             <input type="hidden" name="_id" value="<%= rent._id %>">
+
 
             <label for="rentalClientEmail">E-mail: <% if (formMode!='showDetails' ) { %><abbr title="required"
                         aria-label="required">*</abbr>
@@ -89,7 +90,7 @@
                             <input
                                 class="<%= validationErrors.find(e => e.path.includes('dateFrom')) ? 'error-input' : '' %>"
                                 type="datetime-local" name="dateFrom" id="rentalDateFrom"
-                                value="<%= ((rentData.dateFrom)!=null) ? rentData.dateFrom : ((rent.dateFrom)!=null ? rent.dateFrom.toISOString().slice(0,16) : '') %>"
+                                value="<%= ((rentData.dateFrom)!=null) ? ((formMode=='showDetails') ? new Date(rent.dateFrom - rent.dateFrom.getTimezoneOffset() * 60000).toISOString().slice(0, -8) : rentData.dateFrom) : ((rent.dateFrom)!=null ? new Date(rent.dateFrom - rent.dateFrom.getTimezoneOffset() * 60000).toISOString().slice(0, -8) : '') %>"
                                 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
                             <span id="errorRentalDateFrom" class="errors-text">
                                 <% if (validationErrors.find(e=> e.path.includes('dateFrom'))) { %>
@@ -107,7 +108,7 @@
                             <input
                                 class="<%= validationErrors.find(e => e.path.includes('dateTo')) ? 'error-input' : '' %>"
                                 type="datetime-local" name="dateTo" id="rentalDateTo"
-                                value="<%= ((rentData.dateTo)!=null) ? rentData.dateTo : ((rent.dateTo)!=null ? rent.dateTo.toISOString().slice(0,16) : '') %>"
+                                value="<%= ((rentData.dateTo)!=null) ? ((formMode=='showDetails') ? new Date(rent.dateTo - rent.dateTo.getTimezoneOffset() * 60000).toISOString().slice(0, -8) : rentData.dateTo) : ((rent.dateTo)!=null ? new Date(rent.dateTo - rent.dateTo.getTimezoneOffset() * 60000).toISOString().slice(0, -8) : '') %>"
                                 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>>
                             <span id="errorRentalDateTo" class="errors-text">
                                 <% if (validationErrors.find(e=> e.path.includes('dateTo'))) { %>

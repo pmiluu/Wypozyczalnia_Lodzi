@@ -18,6 +18,7 @@ services:
       MYSQL_PASSWORD: user
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: default_schema
+      TZ: Africa/Bamako
     volumes:
       - "mysqldata:/var/lib/mysql"
 

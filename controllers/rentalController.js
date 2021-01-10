@@ -85,6 +85,9 @@ exports.showRentalDetails = (req, res, next) => {
 
         })
         .then(rent => {
+            console.log("czas w details z bazy " + rent.dateTo);
+            console.log("czas w details skastowany " + rent.dateTo.toISOString().slice(0, 16));
+            console.log("czas w details skastowany 2 " + new Date(rent.dateTo - rent.dateTo.getTimezoneOffset() * 60000).toISOString().slice(0, -8));
             res.render('pages/rental/rental-form', {
                 rent: rent,
                 rentData: rent,
@@ -103,8 +106,9 @@ exports.showRentalDetails = (req, res, next) => {
 exports.addRental = (req, res, next) => {
 
     const rentData = { ...req.body };
+    console.log("czas w adds " + rentData.dateTo);
     let allClients, allBoats;
-
+    console.log(rentData.dateTo);
     RentalRepository.createRental(rentData)
         .then(result => {
             res.redirect('/rentals');

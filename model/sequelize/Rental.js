@@ -37,7 +37,7 @@ const Rental = sequelize.define('Rental', {
     },
     dateTo: {
         type: Sequelize.DATE,
-        allowNull: true,
+        allowNull: false,
         validate: {
 
             isDate: {
