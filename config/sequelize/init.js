@@ -55,8 +55,8 @@ module.exports = () => {
             if (!rentals || rentals.length == 0) {
                 return Rental.bulkCreate([
                     { client_id: allClients[0]._id, boat_id: allBoats[0]._id, dateFrom: '2018-01-01T11:20', dateTo: '2018-01-03T11:20' },
-                    { client_id: allClients[1]._id, boat_id: allBoats[1]._id, dateFrom: '2018-02-01T10:30', dateTo: '2018-02-08T12:00' },
-                    { client_id: allClients[0]._id, boat_id: allBoats[0]._id, dateFrom: '2018-05-06T12:00', dateTo: '2018-05-08T18:00' }
+                    { client_id: allClients[1]._id, boat_id: allBoats[1]._id, dateFrom: '2018-02-01T12:30', dateTo: '2018-02-08T12:00' },
+                    { client_id: allClients[2]._id, boat_id: allBoats[1]._id, dateFrom: '2018-05-06T13:30', dateTo: '2018-05-08T12:00' }
                 ]);
             } else {
                 return rentals;

@@ -22,11 +22,14 @@
                                 <%= rental.boat.name %>
                             </td>
                             <td>
-                                <%= rental.dateFrom.toISOString().split('T')[0] %>
+
+                                <%= new Date(rental.dateFrom - rental.dateFrom.getTimezoneOffset() *
+                                    60000).toISOString().split('T')[0] %>
 
                             </td>
                             <td>
-                                <%= rental.dateTo ? rental.dateTo.toISOString().split('T')[0] : '' %>
+                                <%= new Date(rental.dateTo - rental.dateTo.getTimezoneOffset() *
+                                    60000).toISOString().split('T')[0] %>
                             </td>
                             <td>
                                 <ul class="list-actions">

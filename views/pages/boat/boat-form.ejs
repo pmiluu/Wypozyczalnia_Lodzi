@@ -90,10 +90,12 @@
                                                 <%= b.client.email %>
                                             </a></td>
                                         <td>
-                                            <%= b.dateFrom.toISOString().split('T')[0] %>
+                                            <%= new Date(b.dateFrom - b.dateFrom.getTimezoneOffset() *
+                                                60000).toISOString().split('T')[0] %> %>
                                         </td>
                                         <td>
-                                            <%= b.dateTo ? b.dateTo.toISOString().split('T')[0] : '' %>
+                                            <%= new Date(b.dateTo - b.dateTo.getTimezoneOffset() *
+                                                60000).toISOString().split('T')[0] %> %>
                                         </td>
                                     </tr>
                                     <% } %>
