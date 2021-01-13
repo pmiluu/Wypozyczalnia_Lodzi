@@ -65,6 +65,11 @@ exports.addBoat = (req, res, next) => {
             res.redirect('/boats');
         })
         .catch(err => {
+            err.errors.forEach(e => {
+                if (e.path.includes('name') && e.type == 'unique violation') {
+                    e.message = "Boat name is not unique";
+                }
+            });
             res.render('pages/boat/boat-form', {
                 bt: btData,
                 pageTitle: 'New boat',
@@ -87,6 +92,11 @@ exports.updateBoat = (req, res, next) => {
         .catch(err => {
             BoatRepository.getBoatById(btId)
                 .then(bt => {
+                    err.errors.forEach(e => {
+                        if (e.path.includes('name') && e.type == 'unique violation') {
+                            e.message = "Boat name is not unique";
+                        }
+                    });
                     res.render('pages/boat/boat-form', {
                         bt: btData,
                         bRentals: bt.rentals,

@@ -11,6 +11,7 @@ const Boat = sequelize.define('Boat', {
     name: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
         validate: {
             notEmpty: {
                 msg: "This field is required"
