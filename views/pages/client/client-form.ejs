@@ -1,0 +1,100 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <script type="application/javascript" src="/js/validationClientForm.js"></script>
+        <h2>
+            <%= pageTitle %>
+        </h2>
+
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return clientValidateForm();">
+            <input type="hidden" name="_id" value="<%= cnt._id %>">
+
+            <label for="clientFirstName">First Name: <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
+            <input class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>"
+                type="text" name="firstName" id="clientFirstName" placeholder="e.g. John" value="<%= cnt.firstName %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorClientFirstName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('firstName'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('firstName')).message %>
+                        <% } %>
+            </span>
+
+            <label for="clientLastName">Last Name: <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
+            <input class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>"
+                type="text" name="lastName" id="clientLastName" placeholder="e.g. Snow" value="<%= cnt.lastName %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorClientLastName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('lastName'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('lastName')).message %>
+                        <% } %>
+            </span>
+
+            <label for="clientEmail">E-mail: <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
+            <input class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>" type="email"
+                name="email" id="clientEmail" placeholder="e.g. name@domain.com" value="<%= cnt.email %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
+            <span id="errorClientEmail" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('email'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('email')).message %>
+                        <% } %>
+            </span>
+            <div class="form-buttons">
+                <p id="errorsSummaryClient" class="errors-text"></p>
+                <% if (formMode !='showDetails' ) { %>
+                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                    <a class="form-button-cancel" href="/clients">Cancel</a>
+
+                    <% } %>
+            </div>
+        </form>
+
+        <% if (formMode=='showDetails' ) { %>
+            <div class="section-buttons">
+                <a href="/clients/edit/<%= cnt._id %>" class="button-edit">Edit</a>
+            </div>
+            <% } %>
+                <% if (formMode=='showDetails' || formMode=='edit' ) { %>
+                    <h2>
+                        Rental details
+                    </h2>
+                    <div class="table-wrapper">
+                        <table class="table-list">
+                            <thead>
+                                <tr>
+                                    <th>Boat</th>
+                                    <th>Date From</th>
+                                    <th>Date To</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (let c of cRentals) { %>
+                                    <tr>
+                                        <td><a class="rental-details-link" href=" /rentals/details/<%=c._id %>">
+                                                <%= c.boat.name %>
+                                            </a></td>
+                                        <td>
+                                            <%= new Date(c.dateFrom - c.dateFrom.getTimezoneOffset() *
+                                                60000).toISOString().split('T')[0] %> %>
+                                        </td>
+                                        <td>
+                                            <%= new Date(c.dateTo - c.dateTo.getTimezoneOffset() *
+                                                60000).toISOString().split('T')[0] %> %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <% } %>
+                        <% if (formMode=='showDetails' ) { %>
+                            <a class="button-back" href="/clients">Back</a>
+                            <% } %>
+
+
+    </main>
+    <%- include('../../fragments/footer.ejs') %>

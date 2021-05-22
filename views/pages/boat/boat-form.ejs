@@ -1,0 +1,111 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <script type="application/javascript" src="/js/validationBoatForm.js"></script>
+        <h2>
+            <%= pageTitle %>
+        </h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return boatValidateForm();">
+            <input type="hidden" name="_id" value="<%= bt._id %>">
+
+            <label for="boatName">Name: <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
+            <input class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>" type="text"
+                name="name" id="boatName" placeholder="e.g. Zodiac" value="<%= bt.name %>" <%=(formMode=='showDetails' )
+                ? 'disabled' : '' %>/>
+            <span id="errorBoatName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                        <% } %>
+            </span>
+
+            <label for="boatSeats">Seats: <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
+            <input class="<%= validationErrors.find(e => e.path.includes('seats')) ? 'error-input' : '' %>"
+                type="number" name="seats" id="boatSeats" min="1" placeholder="e.g. 5" value="<%= bt.seats %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+            <span id="errorBoatSeats" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('seats'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('seats')).message %>
+                        <% } %>
+            </span>
+
+            <label for="boatYear">Year: <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
+            <input class="<%= validationErrors.find(e => e.path.includes('year')) ? 'error-input' : '' %>" type="number"
+                name="year" id="boatYear" min="1900" placeholder="e.g. 2001" value="<%= bt.year %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
+            <span id="errorBoatYear" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('year'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('year')).message %>
+                        <% } %>
+            </span>
+
+            <label for="boatPrice">Price: <% if (formMode!='showDetails' ) { %><abbr title="required"
+                        aria-label="required">*</abbr>
+                    <% } %></label>
+            <input class="<%= validationErrors.find(e => e.path.includes('price')) ? 'error-input' : '' %>"
+                type="number" step="0.01" name="price" id="boatPrice" min="0" placeholder="e.g. 100"
+                value="<%= bt.price %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
+            <span id="errorBoatPrice" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('price'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('price')).message %>
+                        <% } %>
+            </span>
+
+            <div class="form-buttons">
+                <p id="errorsSummaryBoat" class="errors-text"></p>
+                <% if (formMode !='showDetails' ) { %>
+                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                    <a class="form-button-cancel" href="/boats">Cancel</a>
+
+                    <% } %>
+            </div>
+        </form>
+
+        <% if (formMode=='showDetails' ) { %>
+            <div class="section-buttons">
+                <a href="/boats/edit/<%= bt._id %>" class="button-edit">Edit</a>
+            </div>
+            <% } %>
+                <% if (formMode=='showDetails' || formMode=='edit' ) { %>
+                    <h2>
+                        Rental details
+                    </h2>
+                    <div class="table-wrapper">
+                        <table class="table-list">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Date From</th>
+                                    <th>Date To</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (let b of bRentals) { %>
+                                    <tr>
+                                        <td><a class="rental-details-link" href="/rentals/details/<%= b._id %>">
+                                                <%= b.client.email %>
+                                            </a></td>
+                                        <td>
+                                            <%= new Date(b.dateFrom - b.dateFrom.getTimezoneOffset() *
+                                                60000).toISOString().split('T')[0] %> %>
+                                        </td>
+                                        <td>
+                                            <%= new Date(b.dateTo - b.dateTo.getTimezoneOffset() *
+                                                60000).toISOString().split('T')[0] %> %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <% } %>
+                        <% if (formMode=='showDetails' ) { %>
+                            <a class="button-back" href="/boats">Back</a>
+                            <% } %>
+
+    </main>
+    <%- include('../../fragments/footer.ejs') %>
